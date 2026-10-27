@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WildLife World Zoo</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f1;
+    color: #17251a;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 7%;
+
+    background: rgba(12, 28, 16, .92);
+    backdrop-filter: blur(12px);
+
+    color: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #9be15d;
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #e5eee5;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: #a7e56d;
+}
+
+.nav-btn {
+    border: none;
+    padding: 10px 18px;
+    border-radius: 25px;
+
+    background: #91d45c;
+    color: #102010;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.menu {
+    display: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 720px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 130px 7% 80px;
+
+    position: relative;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4, 18, 8, .9),
+            rgba(4, 18, 8, .5),
+            rgba(4, 18, 8, .25)
+        ),
+        url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1800&q=85");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 8px 16px;
+
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.08);
+
+    margin-bottom: 20px;
+
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 7vw, 82px);
+    line-height: 1;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #9be15d;
+}
+
+.hero p {
+    max-width: 600px;
+
+    color: #d5ddd5;
+
+    line-height: 1.8;
+
+    font-size: 17px;
+
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+    padding: 14px 24px;
+
+    border-radius: 30px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.primary-btn {
+    background: #96d85f;
+    color: #102010;
+}
+
+.secondary-btn {
+    border: 1px solid rgba(255,255,255,.4);
+    color: white;
+    background: rgba(255,255,255,.08);
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats {
+    margin-top: -50px;
+
+    position: relative;
+    z-index: 10;
+
+    padding: 0 7%;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow: 0 15px 50px rgba(0,0,0,.12);
+
+    overflow: hidden;
+}
+
+.stat {
+    text-align: center;
+
+    padding: 25px;
+
+    border-right: 1px solid #e4e8e2;
+}
+
+.stat:last-child {
+    border-right: none;
+}
+
+.stat h2 {
+    font-size: 30px;
+    color: #315e35;
+}
+
+.stat p {
+    color: #7c887e;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+
+/* =========================
+   GENERAL SECTION
+========================= */
+
+section {
+    padding: 90px 7%;
+}
+
+.section-heading {
+    text-align: center;
+
+    max-width: 700px;
+
+    margin: auto auto 45px;
+}
+
+.section-heading span {
+    color: #579c45;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    font-size: 42px;
+
+    margin: 10px 0 15px;
+}
+
+.section-heading p {
+    color: #718073;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.explorer {
+    background: #eaf1e6;
+}
+
+.search-box {
+    max-width: 800px;
+
+    margin: 0 auto 30px;
+
+    display: flex;
+
+    background: white;
+
+    padding: 8px;
+
+    border-radius: 50px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.search-box input {
+    flex: 1;
+
+    border: none;
+
+    outline: none;
+
+    padding: 14px 20px;
+
+    font-size: 15px;
+
+    border-radius: 40px;
+}
+
+.search-box button {
+    border: none;
+
+    border-radius: 40px;
+
+    padding: 12px 22px;
+
+    background: #356a3b;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   CATEGORY BUTTONS
+========================= */
+
+.categories {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 40px;
+}
+
+.category {
+    border: 1px solid #cbd7c9;
+
+    background: white;
+
+    color: #466047;
+
+    padding: 10px 18px;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.category:hover,
+.category.active {
+    background: #356a3b;
+    color: white;
+    border-color: #356a3b;
+}
+
+
+/* =========================
+   ANIMAL GRID
+========================= */
+
+.animal-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 25px;
+}
+
+.animal-card {
+    background: white;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 30px rgba(0,0,0,.07);
+
+    transition: .3s;
+
+    position: relative;
+}
+
+.animal-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow: 0 15px 40px rgba(0,0,0,.12);
+}
+
+.animal-image {
+    height: 230px;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.animal-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: .5s;
+}
+
+.animal-card:hover img {
+    transform: scale(1.08);
+}
+
+.animal-category {
+    position: absolute;
+
+    left: 15px;
+    top: 15px;
+
+    padding: 6px 11px;
+
+    background: rgba(0,0,0,.6);
+
+    color: white;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+}
+
+.favorite {
+    position: absolute;
+
+    right: 15px;
+    top: 15px;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: rgba(255,255,255,.9);
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+.favorite.active {
+    color: #e54848;
+}
+
+.animal-content {
+    padding: 22px;
+}
+
+.animal-content h3 {
+    font-size: 23px;
+
+    margin-bottom: 3px;
+}
+
+.scientific {
+    font-size: 12px;
+
+    font-style: italic;
+
+    color: #849087;
+
+    margin-bottom: 15px;
+}
+
+.animal-info {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 8px;
+}
+
+.info {
+    background: #f3f6f1;
+
+    padding: 10px;
+
+    border-radius: 10px;
+}
+
+.info span {
+    display: block;
+
+    font-size: 10px;
+
+    color: #839083;
+
+    text-transform: uppercase;
+
+    margin-bottom: 3px;
+}
+
+.info strong {
+    font-size: 12px;
+
+    color: #304a33;
+}
+
+.feature {
+    margin-top: 15px;
+
+    color: #657266;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.details-btn {
+    width: 100%;
+
+    margin-top: 17px;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #e5efe1;
+
+    color: #315d36;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.details-btn:hover {
+    background: #d4e6cf;
+}
+
+
+/* =========================
+   HABITATS
+========================= */
+
+.habitats {
+    background: #102417;
+
+    color: white;
+}
+
+.habitat-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.habitat {
+    min-height: 300px;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background-size: cover;
+
+    background-position: center;
+}
+
+.habitat::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.85)
+        );
+}
+
+.habitat-content {
+    position: relative;
+}
+
+.habitat h3 {
+    font-size: 27px;
+
+    margin-bottom: 8px;
+}
+
+.habitat p {
+    color: #d0d8d1;
+
+    line-height: 1.6;
+
+    font-size: 13px;
+}
+
+.jungle {
+    background-image:
+        url("https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=900&q=80");
+}
+
+.wetland {
+    background-image:
+        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80");
+}
+
+.savanna {
+    background-image:
+        url("https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=900&q=80");
+}
+
+
+/* =========================
+   CONSERVATION
+========================= */
+
+.conservation {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 60px;
+
+    align-items: center;
+}
+
+.conservation-image {
+    height: 500px;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+}
+
+.conservation-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.conservation-content span {
+    color: #579c45;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.conservation-content h2 {
+    font-size: 43px;
+
+    margin: 12px 0 20px;
+}
+
+.conservation-content p {
+    color: #69766c;
+
+    line-height: 1.8;
+
+    margin-bottom: 20px;
+}
+
+.conservation-list {
+    list-style: none;
+}
+
+.conservation-list li {
+    margin: 12px 0;
+
+    color: #405442;
+}
+
+.conservation-list li::before {
+    content: "✓";
+
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 23px;
+    height: 23px;
+
+    margin-right: 10px;
+
+    border-radius: 50%;
+
+    background: #dcebd5;
+
+    color: #3f823d;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0,0,0,.7);
+
+    backdrop-filter: blur(7px);
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: 100%;
+
+    max-width: 800px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 25px;
+
+    position: relative;
+
+    animation: modalIn .3s ease;
+}
+
+@keyframes modalIn {
+
+    from {
+        opacity: 0;
+        transform: scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+.modal-image {
+    width: 100%;
+
+    height: 320px;
+}
+
+.modal-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.modal-content {
+    padding: 30px;
+}
+
+.modal-content h2 {
+    font-size: 34px;
+}
+
+.modal-content .scientific {
+    margin-top: 5px;
+}
+
+.modal-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin: 20px 0;
+}
+
+.modal-info {
+    background: #f1f5ef;
+
+    padding: 15px;
+
+    border-radius: 12px;
+}
+
+.modal-info span {
+    display: block;
+
+    font-size: 10px;
+
+    color: #7a877c;
+
+    text-transform: uppercase;
+
+    margin-bottom: 5px;
+}
+
+.modal-info strong {
+    color: #345238;
+}
+
+.modal-feature {
+    color: #657267;
+
+    line-height: 1.8;
+}
+
+.close {
+    position: absolute;
+
+    right: 18px;
+    top: 18px;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: rgba(0,0,0,.6);
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 3;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #08140c;
+
+    color: #bdc9be;
+
+    padding: 50px 7% 25px;
+}
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr 1fr;
+
+    gap: 40px;
+
+    margin-bottom: 35px;
+}
+
+footer h3 {
+    color: white;
+
+    margin-bottom: 15px;
+}
+
+footer p {
+    color: #849187;
+
+    line-height: 1.7;
+
+    font-size: 13px;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer li {
+    margin: 10px 0;
+
+    font-size: 13px;
+
+    color: #87948a;
+}
+
+.copyright {
+    padding-top: 20px;
+
+    border-top: 1px solid #1b2b20;
+
+    text-align: center;
+
+    color: #657268;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 900px) {
+
+    .animal-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .habitat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .conservation {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media(max-width: 700px) {
+
+    .nav-links,
+    .nav-btn {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .hero {
+        min-height: 650px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat:nth-child(2) {
+        border-right: none;
+    }
+
+    .animal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media(max-width: 500px) {
+
+    section {
+        padding: 65px 5%;
+    }
+
+    .hero {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .stats {
+        padding: 0 5%;
+    }
+
+    .section-heading h2 {
+        font-size: 32px;
+    }
+
+    .search-box {
+        border-radius: 15px;
+        flex-direction: column;
+    }
+
+    .search-box button {
+        margin-top: 5px;
+    }
+
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        🌿 Wild<span>Life</span>
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#home">Home</a>
+        </li>
+
+        <li>
+            <a href="#animals">Animals</a>
+        </li>
+
+        <li>
+            <a href="#habitats">Habitats</a>
+        </li>
+
+        <li>
+            <a href="#conservation">Conservation</a>
+        </li>
+
+    </ul>
+
+    <button class="nav-btn"
+            onclick="scrollToAnimals()">
+        Explore Zoo
+    </button>
+
+    <div class="menu">
+        ☰
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            🌍 Discover • Learn • Protect
+        </div>
+
+        <h1>
+            Welcome to the
+            <span>Wild.</span>
+        </h1>
+
+        <p>
+            Explore fascinating species from forests,
+            wetlands, mountains and grasslands.
+            Learn what they eat, where they live,
+            and the unique features that make every
+            species special.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#animals"
+               class="primary-btn">
+                🐾 Explore Animals
+            </a>
+
+            <a href="#conservation"
+               class="secondary-btn">
+                🌱 Our Mission
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<div class="stats">
+
+    <div class="stats-grid">
+
+        <div class="stat">
+            <h2>30+</h2>
+            <p>Species</p>
+        </div>
+
+        <div class="stat">
+            <h2>3</h2>
+            <p>Major Groups</p>
+        </div>
+
+        <div class="stat">
+            <h2>12</h2>
+            <p>Habitats</p>
+        </div>
+
+        <div class="stat">
+            <h2>24/7</h2>
+            <p>Wildlife Education</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     ANIMAL EXPLORER
+========================= -->
+
+<section class="explorer" id="animals">
+
+    <div class="section-heading">
+
+        <span>Meet the Residents</span>
+
+        <h2>
+            Explore Our Animals
+        </h2>
+
+        <p>
+            Search through our collection of
+            mammals, birds and reptiles.
+            Select an animal to discover
+            fascinating facts about it.
+        </p>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search animal, food, habitat..."
+        >
+
+        <button onclick="searchAnimals()">
+            🔍 Search
+        </button>
+
+    </div>
+
+
+    <!-- CATEGORIES -->
+
+    <div class="categories">
+
+        <button class="category active"
+                data-category="all">
+            🌎 All
+        </button>
+
+        <button class="category"
+                data-category="animal">
+            🐘 Animals
+        </button>
+
+        <button class="category"
+                data-category="bird">
+            🦜 Birds
+        </button>
+
+        <button class="category"
+                data-category="snake">
+            🐍 Snakes
+        </button>
+
+    </div>
+
+
+    <!-- ANIMALS -->
+
+    <div class="animal-grid"
+         id="animalGrid">
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HABITATS
+========================= -->
+
+<section class="habitats" id="habitats">
+
+    <div class="section-heading">
+
+        <span>Explore Their World</span>
+
+        <h2>
+            Natural Habitats
+        </h2>
+
+        <p style="color:#9dac9f;">
+            Different environments create
+            different ways of life.
+        </p>
+
+    </div>
+
+
+    <div class="habitat-grid">
+
+        <div class="habitat jungle">
+
+            <div class="habitat-content">
+
+                <h3>🌳 Tropical Jungle</h3>
+
+                <p>
+                    Dense forests filled with
+                    monkeys, colorful birds,
+                    reptiles and countless
+                    smaller species.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="habitat wetland">
+
+            <div class="habitat-content">
+
+                <h3>💧 Wetlands</h3>
+
+                <p>
+                    Rich ecosystems supporting
+                    water birds, amphibians,
+                    fish and aquatic reptiles.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="habitat savanna">
+
+            <div class="habitat-content">
+
+                <h3>🌾 African Savanna</h3>
+
+                <p>
+                    Open grasslands where large
+                    herbivores and powerful
+                    predators share the ecosystem.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONSERVATION
+========================= -->
+
+<section id="conservation">
+
+    <div class="conservation">
+
+        <div class="conservation-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1000&q=85"
+                alt="Elephant"
+            >
+
+        </div>
+
+
+        <div class="conservation-content">
+
+            <span>PROTECT THE WILD</span>
+
+            <h2>
+                Every Species
+                Has a Story.
+            </h2>
+
+            <p>
+                Zoos can play a role in wildlife
+                education, scientific research,
+                conservation breeding and helping
+                visitors understand the importance
+                of protecting natural habitats.
+            </p>
+
+            <ul class="conservation-list">
+
+                <li>
+                    Wildlife education
+                </li>
+
+                <li>
+                    Species conservation
+                </li>
+
+                <li>
+                    Habitat awareness
+                </li>
+
+                <li>
+                    Scientific research
+                </li>
+
+                <li>
+                    Responsible wildlife care
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+
+            <h3>🌿 WildLife World</h3>
+
+            <p>
+                Discover the incredible diversity
+                of life on Earth and learn how
+                we can help protect it.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Explore</h3>
+
+            <ul>
+
+                <li>Animals</li>
+
+                <li>Birds</li>
+
+                <li>Snakes</li>
+
+                <li>Habitats</li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h3>Learn</h3>
+
+            <ul>
+
+                <li>Animal Facts</li>
+
+                <li>Wildlife Diet</li>
+
+                <li>Habitats</li>
+
+                <li>Conservation</li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h3>Zoo</h3>
+
+            <ul>
+
+                <li>Visitor Guide</li>
+
+                <li>Education</li>
+
+                <li>Research</li>
+
+                <li>Contact</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 WildLife World Zoo.
+        Built for wildlife education.
+
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     ANIMAL MODAL
+========================= -->
+
+<div class="modal" id="animalModal">
+
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal()">
+            ×
+        </button>
+
+        <div class="modal-image">
+
+            <img id="modalImage"
+                 src=""
+                 alt="Animal">
+
+        </div>
+
+        <div class="modal-content">
+
+            <h2 id="modalName"></h2>
+
+            <p class="scientific"
+               id="modalScientific">
+            </p>
+
+            <div class="modal-grid">
+
+                <div class="modal-info">
+
+                    <span>Food</span>
+
+                    <strong id="modalFood"></strong>
+
+                </div>
+
+                <div class="modal-info">
+
+                    <span>Habitat</span>
+
+                    <strong id="modalHabitat"></strong>
+
+                </div>
+
+                <div class="modal-info">
+
+                    <span>Lifespan</span>
+
+                    <strong id="modalLife"></strong>
+
+                </div>
+
+            </div>
+
+            <p class="modal-feature"
+               id="modalFeature">
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   ANIMAL DATABASE
+========================= */
+
+const animals = [
+
+    {
+        name: "African Lion",
+        scientific: "Panthera leo",
+        category: "animal",
+        food: "Meat",
+        habitat: "Savanna",
+        lifespan: "10–14 years",
+        feature: "Known for its powerful roar. Lions are the only truly social big cats and live in groups called prides.",
+        image: "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Asian Elephant",
+        scientific: "Elephas maximus",
+        category: "animal",
+        food: "Grass & Plants",
+        habitat: "Forests",
+        lifespan: "48–70 years",
+        feature: "Asian elephants have highly sensitive trunks used for breathing, feeding, drinking and communication.",
+        image: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Giraffe",
+        scientific: "Giraffa camelopardalis",
+        category: "animal",
+        food: "Leaves",
+        habitat: "Savanna",
+        lifespan: "20–25 years",
+        feature: "The giraffe is the tallest living land animal and uses its extremely long neck to reach leaves high in trees.",
+        image: "https://images.unsplash.com/photo-1547721064-da6cfb341d50?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Tiger",
+        scientific: "Panthera tigris",
+        category: "animal",
+        food: "Meat",
+        habitat: "Forests",
+        lifespan: "10–15 years",
+        feature: "Every tiger has a unique stripe pattern. Tigers are powerful solitary hunters and excellent swimmers.",
+        image: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Red Panda",
+        scientific: "Ailurus fulgens",
+        category: "animal",
+        food: "Bamboo & Fruit",
+        habitat: "Mountain Forests",
+        lifespan: "8–10 years",
+        feature: "Red pandas have a long striped tail that helps with balance and provides warmth in cold mountain habitats.",
+        image: "https://images.unsplash.com/photo-1535338454770-8be927b5a00b?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Macaw",
+        scientific: "Ara macao",
+        category: "bird",
+        food: "Seeds & Fruit",
+        habitat: "Rainforests",
+        lifespan: "40–50 years",
+        feature: "Macaws have powerful curved beaks and bright plumage. Some species can mimic human speech.",
+        image: "https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Peacock",
+        scientific: "Pavo cristatus",
+        category: "bird",
+        food: "Seeds & Insects",
+        habitat: "Forests",
+        lifespan: "10–25 years",
+        feature: "Male peacocks display enormous colorful tail feathers during courtship.",
+        image: "https://images.unsplash.com/photo-1518001589401-174ee8d3d1c5?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Flamingo",
+        scientific: "Phoenicopterus roseus",
+        category: "bird",
+        food: "Algae & Small Organisms",
+        habitat: "Wetlands",
+        lifespan: "20–30 years",
+        feature: "Flamingos get much of their pink coloration from pigments in their food and use specialized bills to filter-feed.",
+        image: "https://images.unsplash.com/photo-1497206365907-f5e630693df0?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Owl",
+        scientific: "Strigiformes",
+        category: "bird",
+        food: "Small Animals",
+        habitat: "Forests",
+        lifespan: "5–15 years",
+        feature: "Owls have exceptional low-light vision and specialized feathers that allow remarkably quiet flight.",
+        image: "https://images.unsplash.com/photo-1486365227551-f3f90034a57c?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "King Cobra",
+        scientific: "Ophiophagus hannah",
+        category: "snake",
+        food: "Other Snakes",
+        habitat: "Forests",
+        lifespan: "15–20 years",
+        feature: "The king cobra is the world's longest venomous snake and can raise the front portion of its body when threatened.",
+        image: "https://images.unsplash.com/photo-1531386151447-fd76ad50012f?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Green Tree Python",
+        scientific: "Morelia viridis",
+        category: "snake",
+        food: "Small Mammals & Birds",
+        habitat: "Rainforests",
+        lifespan: "15–20 years",
+        feature: "This arboreal snake spends much of its life in trees and uses its prehensile tail to grip branches.",
+        image: "https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Indian Python",
+        scientific: "Python molurus",
+        category: "snake",
+        food: "Mammals & Birds",
+        habitat: "Grasslands & Forests",
+        lifespan: "15–20 years",
+        feature: "Indian pythons are non-venomous constrictors that subdue prey using their powerful muscular bodies.",
+        image: "https://images.unsplash.com/photo-1511273790694-6f4d9c9f1b37?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Boa Constrictor",
+        scientific: "Boa constrictor",
+        category: "snake",
+        food: "Mammals & Birds",
+        habitat: "Tropical Forests",
+        lifespan: "20–30 years",
+        feature: "Boa constrictors are strong constrictors that use heat-sensitive organs around their mouths to detect prey.",
+        image: "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?auto=format&fit=crop&w=900&q=80"
+    }
+
+];
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+const grid =
+    document.getElementById("animalGrid");
+
+let currentCategory = "all";
+
+
+/* =========================
+   DISPLAY ANIMALS
+========================= */
+
+function displayAnimals(list) {
+
+    grid.innerHTML = "";
+
+    if (list.length === 0) {
+
+        grid.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:50px;
+                color:#718073;
+            ">
+                <h3>No animals found 🐾</h3>
+                <p>Try another search.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    list.forEach((animal, index) => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "animal-card";
+
+        card.innerHTML = `
+
+            <div class="animal-image">
+
+                <img
+                    src="${animal.image}"
+                    alt="${animal.name}"
+                    loading="lazy"
+                >
+
+                <span class="animal-category">
+                    ${getCategoryIcon(animal.category)}
+                    ${capitalize(animal.category)}
+                </span>
+
+                <button
+                    class="favorite"
+                    onclick="toggleFavorite(this)"
+                    title="Favorite"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="animal-content">
+
+                <h3>
+                    ${animal.name}
+                </h3>
+
+                <p class="scientific">
+                    ${animal.scientific}
+                </p>
+
+                <div class="animal-info">
+
+                    <div class="info">
+
+                        <span>Food</span>
+
+                        <strong>
+                            ${animal.food}
+                        </strong>
+
+                    </div>
+
+                    <div class="info">
+
+                        <span>Habitat</span>
+
+                        <strong>
+                            ${animal.habitat}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <p class="feature">
+
+                    ⭐ ${animal.feature}
+
+                </p>
+
+                <button
+                    class="details-btn"
+                    onclick="showDetails(${animals.indexOf(animal)})"
+                >
+                    View Full Details →
+                </button>
+
+            </div>
+        `;
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   CATEGORY ICON
+========================= */
+
+function getCategoryIcon(category) {
+
+    if (category === "animal") {
+        return "🐘";
+    }
+
+    if (category === "bird") {
+        return "🦜";
+    }
+
+    if (category === "snake") {
+        return "🐍";
+    }
+
+    return "🌎";
+
+}
+
+
+/* =========================
+   CAPITALIZE
+========================= */
+
+function capitalize(text) {
+
+    return text.charAt(0).toUpperCase()
+        + text.slice(1);
+
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
+document
+.querySelectorAll(".category")
+.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        function() {
+
+            document
+            .querySelectorAll(".category")
+            .forEach(btn =>
+                btn.classList.remove("active")
+            );
+
+            this.classList.add("active");
+
+            currentCategory =
+                this.dataset.category;
+
+            filterAnimals();
+
+        }
+    );
+
+});
+
+
+/* =========================
+   FILTER FUNCTION
+========================= */
+
+function filterAnimals() {
+
+    const search =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    let result =
+        animals.filter(animal => {
+
+            const matchesCategory =
+                currentCategory === "all" ||
+                animal.category === currentCategory;
+
+
+            const text =
+                (
+                    animal.name +
+                    " " +
+                    animal.scientific +
+                    " " +
+                    animal.food +
+                    " " +
+                    animal.habitat +
+                    " " +
+                    animal.feature
+                ).toLowerCase();
+
+
+            const matchesSearch =
+                text.includes(search);
+
+
+            return (
+                matchesCategory &&
+                matchesSearch
+            );
+
+        });
+
+
+    displayAnimals(result);
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchAnimals() {
+
+    filterAnimals();
+
+}
+
+
+/* LIVE SEARCH */
+
+document
+.getElementById("search")
+.addEventListener(
+    "input",
+    filterAnimals
+);
+
+
+/* =========================
+   FAVORITE
+========================= */
+
+function toggleFavorite(button) {
+
+    button.classList.toggle("active");
+
+    button.textContent =
+        button.classList.contains("active")
+            ? "♥"
+            : "♡";
+
+}
+
+
+/* =========================
+   DETAILS MODAL
+========================= */
+
+function showDetails(index) {
+
+    const animal =
+        animals[index];
+
+
+    document
+    .getElementById("modalImage")
+    .src = animal.image;
+
+
+    document
+    .getElementById("modalImage")
+    .alt = animal.name;
+
+
+    document
+    .getElementById("modalName")
+    .textContent = animal.name;
+
+
+    document
+    .getElementById("modalScientific")
+    .textContent = animal.scientific;
+
+
+    document
+    .getElementById("modalFood")
+    .textContent = animal.food;
+
+
+    document
+    .getElementById("modalHabitat")
+    .textContent = animal.habitat;
+
+
+    document
+    .getElementById("modalLife")
+    .textContent = animal.lifespan;
+
+
+    document
+    .getElementById("modalFeature")
+    .textContent =
+        "⭐ Special Feature: " +
+        animal.feature;
+
+
+    document
+    .getElementById("animalModal")
+    .classList.add("show");
+
+}
+
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+function closeModal() {
+
+    document
+    .getElementById("animalModal")
+    .classList.remove("show");
+
+}
+
+
+/* CLICK OUTSIDE MODAL */
+
+document
+.getElementById("animalModal")
+.addEventListener(
+    "click",
+    function(event) {
+
+        if (event.target === this) {
+            closeModal();
+        }
+
+    }
+);
+
+
+/* ESCAPE KEY */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+            closeModal();
+        }
+
+    }
+);
+
+
+/* =========================
+   SCROLL
+========================= */
+
+function scrollToAnimals() {
+
+    document
+    .getElementById("animals")
+    .scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+/* =========================
+   INITIAL LOAD
+========================= */
+
+displayAnimals(animals);
+
+</script>
+
+</body>
+</html>

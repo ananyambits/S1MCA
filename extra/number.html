@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Rush</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top,#302b63,#0f0c29 55%,#05030f);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.game{
+    width:100%;
+    max-width:900px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    backdrop-filter:blur(18px);
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 25px 80px rgba(0,0,0,.5);
+}
+
+.header{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.header h1{
+    font-size:clamp(35px,7vw,65px);
+    background:linear-gradient(90deg,#00f2fe,#4facfe,#a855f7);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.header p{
+    color:#bbb;
+    margin-top:8px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:rgba(255,255,255,.08);
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.stat span{
+    display:block;
+    color:#aaa;
+    font-size:13px;
+    margin-bottom:5px;
+}
+
+.stat strong{
+    font-size:25px;
+}
+
+.question{
+    background:rgba(0,0,0,.25);
+    border-radius:20px;
+    padding:35px 20px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.question small{
+    color:#aaa;
+}
+
+#problem{
+    font-size:clamp(35px,8vw,65px);
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.message{
+    min-height:25px;
+    font-weight:bold;
+}
+
+.answers{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.answer{
+    border:none;
+    padding:22px;
+    border-radius:17px;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    font-size:25px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+    min-height:70px;
+}
+
+.answer:hover{
+    transform:translateY(-4px) scale(1.02);
+    box-shadow:0 10px 30px rgba(118,75,162,.4);
+}
+
+.answer:active{
+    transform:scale(.96);
+}
+
+.controls{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:25px;
+    flex-wrap:wrap;
+}
+
+button.control{
+    border:none;
+    padding:13px 25px;
+    border-radius:30px;
+    cursor:pointer;
+    color:white;
+    background:#222;
+    font-weight:bold;
+}
+
+button.control:hover{
+    background:#333;
+}
+
+.start{
+    background:linear-gradient(90deg,#00c6ff,#0072ff)!important;
+}
+
+.progress{
+    height:7px;
+    background:#222;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.progress-bar{
+    height:100%;
+    width:100%;
+    background:linear-gradient(90deg,#00f2fe,#a855f7);
+    transition:width 1s linear;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(10px);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    z-index:10;
+}
+
+.result{
+    width:100%;
+    max-width:430px;
+    background:#15122b;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:25px;
+    padding:35px;
+    text-align:center;
+}
+
+.result h2{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.final-score{
+    font-size:60px;
+    font-weight:bold;
+    color:#00eaff;
+    margin:20px;
+}
+
+.result p{
+    color:#aaa;
+    margin:8px;
+}
+
+.result button{
+    margin-top:20px;
+    border:none;
+    padding:14px 30px;
+    border-radius:30px;
+    background:linear-gradient(90deg,#00c6ff,#0072ff);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.correct{
+    animation:correct .35s;
+}
+
+.wrong{
+    animation:wrong .35s;
+}
+
+@keyframes correct{
+    50%{
+        transform:scale(1.04);
+        box-shadow:0 0 35px #00ff88;
+    }
+}
+
+@keyframes wrong{
+    25%,75%{
+        transform:translateX(-8px);
+    }
+    50%{
+        transform:translateX(8px);
+    }
+}
+
+@media(max-width:600px){
+    .game{
+        padding:18px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .answers{
+        grid-template-columns:1fr;
+    }
+
+    .answer{
+        padding:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="game">
+
+    <div class="header">
+        <h1>NUMBER RUSH</h1>
+        <p>Solve as many problems as you can before time runs out!</p>
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <span>SCORE</span>
+            <strong id="score">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>TIME</span>
+            <strong id="time">30</strong>
+        </div>
+
+        <div class="stat">
+            <span>STREAK</span>
+            <strong id="streak">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>BEST</span>
+            <strong id="best">0</strong>
+        </div>
+
+    </div>
+
+    <div class="question">
+
+        <small>WHAT IS THE ANSWER?</small>
+
+        <div id="problem">Press START</div>
+
+        <div class="message" id="message">
+            Ready?
+        </div>
+
+    </div>
+
+    <div class="answers">
+
+        <button class="answer" data-index="0">?</button>
+        <button class="answer" data-index="1">?</button>
+        <button class="answer" data-index="2">?</button>
+        <button class="answer" data-index="3">?</button>
+
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar" id="progress"></div>
+    </div>
+
+    <div class="controls">
+        <button class="control start" id="startBtn">
+            ▶ START GAME
+        </button>
+
+        <button class="control" id="pauseBtn">
+            ⏸ PAUSE
+        </button>
+
+        <button class="control" id="resetBtn">
+            ↻ RESET
+        </button>
+    </div>
+
+</div>
+
+
+<div class="overlay" id="overlay">
+
+    <div class="result">
+
+        <h2>🏆 GAME OVER</h2>
+
+        <p>Your Final Score</p>
+
+        <div class="final-score" id="finalScore">0</div>
+
+        <p id="resultMessage"></p>
+
+        <p>
+            Correct Answers:
+            <strong id="correctAnswers">0</strong>
+        </p>
+
+        <p>
+            Best Streak:
+            <strong id="bestStreak">0</strong>
+        </p>
+
+        <button id="playAgain">
+            PLAY AGAIN
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const problem = document.getElementById("problem");
+const message = document.getElementById("message");
+
+const scoreEl = document.getElementById("score");
+const timeEl = document.getElementById("time");
+const streakEl = document.getElementById("streak");
+const bestEl = document.getElementById("best");
+
+const progress = document.getElementById("progress");
+
+const startBtn = document.getElementById("startBtn");
+const pauseBtn = document.getElementById("pauseBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+const overlay = document.getElementById("overlay");
+const finalScore = document.getElementById("finalScore");
+const correctAnswersEl = document.getElementById("correctAnswers");
+const bestStreakEl = document.getElementById("bestStreak");
+const resultMessage = document.getElementById("resultMessage");
+const playAgain = document.getElementById("playAgain");
+
+const answers = document.querySelectorAll(".answer");
+
+let score = 0;
+let time = 30;
+let streak = 0;
+let bestStreak = 0;
+let correctAnswers = 0;
+
+let correctAnswer = 0;
+
+let gameRunning = false;
+let paused = false;
+let timer = null;
+
+let bestScore = Number(localStorage.getItem("numberRushBest")) || 0;
+
+bestEl.textContent = bestScore;
+
+
+function randomNumber(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+
+function createQuestion(){
+
+    let a;
+    let b;
+    let operator;
+
+    const level = Math.min(
+        5,
+        Math.floor(score / 100) + 1
+    );
+
+    const operators = ["+","-","×"];
+
+    operator =
+        operators[randomNumber(0,operators.length-1)];
+
+    if(operator === "+"){
+
+        a = randomNumber(5,20 * level);
+        b = randomNumber(5,20 * level);
+
+        correctAnswer = a + b;
+
+    }
+
+    else if(operator === "-"){
+
+        a = randomNumber(10,30 * level);
+        b = randomNumber(1,a);
+
+        correctAnswer = a - b;
+
+    }
+
+    else{
+
+        a = randomNumber(2,5 + level);
+        b = randomNumber(2,10);
+
+        correctAnswer = a * b;
+
+    }
+
+    problem.textContent =
+        `${a} ${operator} ${b} = ?`;
+
+
+    let options = new Set();
+
+    options.add(correctAnswer);
+
+    while(options.size < 4){
+
+        let difference =
+            randomNumber(-10,10);
+
+        let wrong =
+            correctAnswer + difference;
+
+        if(wrong >= 0){
+            options.add(wrong);
+        }
+
+    }
+
+    options =
+        [...options].sort(()=>Math.random()-.5);
+
+
+    answers.forEach((button,index)=>{
+
+        button.textContent = options[index];
+
+        button.dataset.value = options[index];
+
+    });
+
+}
+
+
+function startGame(){
+
+    score = 0;
+    time = 30;
+    streak = 0;
+    correctAnswers = 0;
+    bestStreak = 0;
+
+    gameRunning = true;
+    paused = false;
+
+    scoreEl.textContent = score;
+    timeEl.textContent = time;
+    streakEl.textContent = streak;
+
+    overlay.style.display = "none";
+
+    message.textContent = "🔥 GO!";
+
+    createQuestion();
+
+    clearInterval(timer);
+
+    timer = setInterval(()=>{
+
+        if(!gameRunning || paused) return;
+
+        time--;
+
+        timeEl.textContent = time;
+
+        progress.style.width =
+            (time / 30 * 100) + "%";
+
+
+        if(time <= 0){
+
+            endGame();
+
+        }
+
+    },1000);
+
+}
+
+
+function selectAnswer(button){
+
+    if(!gameRunning || paused) return;
+
+    const selected =
+        Number(button.dataset.value);
+
+
+    if(selected === correctAnswer){
+
+        score += 10 + streak * 2;
+
+        streak++;
+
+        correctAnswers++;
+
+        if(streak > bestStreak){
+            bestStreak = streak;
+        }
+
+        message.textContent =
+            `✓ Correct! +${10 + (streak-1)*2}`;
+
+        button.classList.add("correct");
+
+        setTimeout(()=>{
+            button.classList.remove("correct");
+        },350);
+
+        createQuestion();
+
+    }
+
+    else{
+
+        score = Math.max(0,score - 5);
+
+        streak = 0;
+
+        message.textContent =
+            "✗ Wrong! -5 points";
+
+        button.classList.add("wrong");
+
+        setTimeout(()=>{
+            button.classList.remove("wrong");
+        },350);
+
+    }
+
+    scoreEl.textContent = score;
+    streakEl.textContent = streak;
+
+}
+
+
+function pauseGame(){
+
+    if(!gameRunning) return;
+
+    paused = !paused;
+
+    if(paused){
+
+        pauseBtn.textContent = "▶ RESUME";
+        message.textContent = "⏸ Game Paused";
+
+    }
+
+    else{
+
+        pauseBtn.textContent = "⏸ PAUSE";
+        message.textContent = "🔥 Continue!";
+
+    }
+
+}
+
+
+function endGame(){
+
+    clearInterval(timer);
+
+    gameRunning = false;
+    paused = false;
+
+    if(score > bestScore){
+
+        bestScore = score;
+
+        localStorage.setItem(
+            "numberRushBest",
+            bestScore
+        );
+
+    }
+
+    bestEl.textContent = bestScore;
+
+    finalScore.textContent = score;
+
+    correctAnswersEl.textContent =
+        correctAnswers;
+
+    bestStreakEl.textContent =
+        bestStreak;
+
+
+    if(score >= 300){
+
+        resultMessage.textContent =
+            "🔥 Amazing! You're a number master!";
+
+    }
+
+    else if(score >= 150){
+
+        resultMessage.textContent =
+            "⚡ Great job! Very fast thinking!";
+
+    }
+
+    else if(score >= 50){
+
+        resultMessage.textContent =
+            "👍 Good attempt! Try to beat your score.";
+
+    }
+
+    else{
+
+        resultMessage.textContent =
+            "💪 Keep practicing and try again!";
+
+    }
+
+    overlay.style.display = "flex";
+
+}
+
+
+function resetGame(){
+
+    clearInterval(timer);
+
+    gameRunning = false;
+    paused = false;
+
+    score = 0;
+    time = 30;
+    streak = 0;
+
+    scoreEl.textContent = "0";
+    timeEl.textContent = "30";
+    streakEl.textContent = "0";
+
+    progress.style.width = "100%";
+
+    problem.textContent = "Press START";
+
+    message.textContent = "Ready?";
+
+    answers.forEach(button=>{
+        button.textContent = "?";
+        button.dataset.value = "";
+    });
+
+    pauseBtn.textContent = "⏸ PAUSE";
+
+    overlay.style.display = "none";
+
+}
+
+
+answers.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        selectAnswer(button);
+
+    });
+
+});
+
+
+startBtn.addEventListener("click",startGame);
+
+pauseBtn.addEventListener("click",pauseGame);
+
+resetBtn.addEventListener("click",resetGame);
+
+playAgain.addEventListener("click",startGame);
+
+
+document.addEventListener("keydown",(event)=>{
+
+    if(!gameRunning || paused) return;
+
+    const key = event.key;
+
+    if(["1","2","3","4"].includes(key)){
+
+        const index = Number(key)-1;
+
+        selectAnswer(answers[index]);
+
+    }
+
+    if(key === " "){
+
+        event.preventDefault();
+
+        pauseGame();
+
+    }
+
+});
+
+
+</script>
+
+</body>
+</html>

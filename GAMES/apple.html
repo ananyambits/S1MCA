@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple Basket</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+        linear-gradient(#87ceeb 0%,#b8e7ff 55%,#74b84b 55%,#4f9b35 100%);
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+}
+
+.game-wrapper{
+    width:min(95vw,900px);
+}
+
+.topbar{
+    background:rgba(0,0,0,.75);
+    color:white;
+    padding:15px 20px;
+    border-radius:18px 18px 0 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.title{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.stats{
+    display:flex;
+    gap:18px;
+    font-weight:bold;
+}
+
+.stat span{
+    color:#ffd54a;
+}
+
+.game-area{
+    position:relative;
+    width:100%;
+    height:min(70vh,600px);
+    min-height:450px;
+    overflow:hidden;
+    background:
+        linear-gradient(
+            to bottom,
+            #8ed8ff 0%,
+            #d5f3ff 65%,
+            #8acb52 65%,
+            #63ad3d 100%
+        );
+    border-radius:0 0 18px 18px;
+    border:5px solid rgba(255,255,255,.7);
+    border-top:none;
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+
+/* Clouds */
+
+.cloud{
+    position:absolute;
+    width:100px;
+    height:35px;
+    background:white;
+    border-radius:50px;
+    opacity:.8;
+}
+
+.cloud:before,
+.cloud:after{
+    content:"";
+    position:absolute;
+    background:white;
+    border-radius:50%;
+}
+
+.cloud:before{
+    width:50px;
+    height:50px;
+    left:15px;
+    top:-25px;
+}
+
+.cloud:after{
+    width:65px;
+    height:65px;
+    right:10px;
+    top:-35px;
+}
+
+.cloud1{
+    top:55px;
+    left:8%;
+    animation:cloudMove 18s linear infinite;
+}
+
+.cloud2{
+    top:120px;
+    right:10%;
+    transform:scale(.7);
+    animation:cloudMove 25s linear infinite reverse;
+}
+
+@keyframes cloudMove{
+    from{transform:translateX(-30px);}
+    to{transform:translateX(100px);}
+}
+
+/* Trees */
+
+.tree{
+    position:absolute;
+    bottom:35%;
+    font-size:75px;
+    user-select:none;
+}
+
+.tree1{
+    left:15px;
+}
+
+.tree2{
+    right:20px;
+}
+
+.tree3{
+    left:42%;
+    transform:scale(.65);
+}
+
+/* Ground */
+
+.ground{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:35%;
+    pointer-events:none;
+}
+
+.grass{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:45px;
+    background:#438b2d;
+}
+
+.grass:before{
+    content:"🌱 🌿 🌱 🌿 🌱 🌿 🌱 🌿 🌱 🌿 🌱";
+    position:absolute;
+    top:-25px;
+    width:100%;
+    text-align:center;
+    font-size:25px;
+}
+
+/* Apple */
+
+.apple{
+    position:absolute;
+    font-size:42px;
+    width:50px;
+    height:50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:5;
+    user-select:none;
+}
+
+/* Basket */
+
+.basket{
+    position:absolute;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    width:130px;
+    height:75px;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #8b4513 0px,
+            #8b4513 8px,
+            #a85c20 8px,
+            #a85c20 15px
+        );
+    border-radius:10px 10px 45px 45px;
+    border:6px solid #6b320d;
+    box-shadow:
+        inset 0 8px 10px rgba(255,255,255,.15),
+        0 10px 15px rgba(0,0,0,.35);
+    z-index:10;
+}
+
+.basket:before{
+    content:"";
+    position:absolute;
+    left:10px;
+    right:10px;
+    top:-20px;
+    height:28px;
+    border:7px solid #6b320d;
+    border-bottom:none;
+    border-radius:50px 50px 0 0;
+}
+
+.basket:after{
+    content:"";
+    position:absolute;
+    left:15px;
+    right:15px;
+    top:8px;
+    height:8px;
+    background:#5d2c0c;
+    border-radius:50%;
+}
+
+/* Start screen */
+
+.start-screen{
+    position:absolute;
+    inset:0;
+    z-index:20;
+    background:rgba(0,0,0,.55);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.start-card{
+    width:min(90%,430px);
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+
+.start-card h1{
+    font-size:42px;
+    color:#d62828;
+    margin-bottom:10px;
+}
+
+.start-card p{
+    color:#555;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.start-btn{
+    border:none;
+    background:linear-gradient(135deg,#ff3b30,#e91e63);
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    padding:15px 40px;
+    border-radius:40px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(233,30,99,.35);
+    transition:.2s;
+}
+
+.start-btn:hover{
+    transform:translateY(-3px) scale(1.03);
+}
+
+/* Game over */
+
+.game-over{
+    position:absolute;
+    inset:0;
+    z-index:30;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.65);
+}
+
+.game-over-card{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    text-align:center;
+    width:min(90%,400px);
+}
+
+.game-over-card h2{
+    font-size:38px;
+    color:#d62828;
+}
+
+.final-score{
+    font-size:55px;
+    font-weight:bold;
+    color:#ff9800;
+    margin:15px;
+}
+
+.restart{
+    border:none;
+    padding:13px 30px;
+    border-radius:30px;
+    background:#2196f3;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* Mobile controls */
+
+.mobile-controls{
+    position:absolute;
+    bottom:105px;
+    left:0;
+    width:100%;
+    display:none;
+    justify-content:space-between;
+    padding:0 20px;
+    z-index:15;
+}
+
+.move-btn{
+    width:65px;
+    height:65px;
+    border:none;
+    border-radius:50%;
+    background:rgba(0,0,0,.55);
+    color:white;
+    font-size:28px;
+}
+
+.instructions{
+    text-align:center;
+    color:white;
+    margin-top:12px;
+    font-size:14px;
+    text-shadow:0 2px 3px #333;
+}
+
+@media(max-width:650px){
+
+    .topbar{
+        justify-content:center;
+    }
+
+    .title{
+        width:100%;
+        text-align:center;
+    }
+
+    .game-area{
+        height:65vh;
+        min-height:420px;
+    }
+
+    .mobile-controls{
+        display:flex;
+    }
+
+    .tree{
+        font-size:55px;
+    }
+
+    .basket{
+        width:110px;
+        height:65px;
+    }
+
+    .apple{
+        font-size:36px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="game-wrapper">
+
+    <div class="topbar">
+
+        <div class="title">
+            🍎 Apple Basket
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                Score: <span id="score">0</span>
+            </div>
+
+            <div class="stat">
+                Lives: <span id="lives">❤️❤️❤️</span>
+            </div>
+
+            <div class="stat">
+                Level: <span id="level">1</span>
+            </div>
+
+            <div class="stat">
+                Best: <span id="best">0</span>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="game-area" id="gameArea">
+
+        <!-- Clouds -->
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+
+        <!-- Trees -->
+        <div class="tree tree1">🌳</div>
+        <div class="tree tree2">🌳</div>
+        <div class="tree tree3">🌲</div>
+
+
+        <!-- Basket -->
+        <div class="basket" id="basket"></div>
+
+
+        <!-- Mobile controls -->
+        <div class="mobile-controls">
+
+            <button class="move-btn" id="leftBtn">
+                ◀
+            </button>
+
+            <button class="move-btn" id="rightBtn">
+                ▶
+            </button>
+
+        </div>
+
+
+        <!-- Start -->
+        <div class="start-screen" id="startScreen">
+
+            <div class="start-card">
+
+                <h1>🍎 Catch!</h1>
+
+                <p>
+                    Apples are falling from the sky!
+                    Move your basket and catch as many
+                    apples as possible.
+                </p>
+
+                <p>
+                    🖥️ Use <b>← →</b> arrow keys<br>
+                    📱 Use the buttons on mobile
+                </p>
+
+                <button class="start-btn" id="startBtn">
+                    START GAME
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Game Over -->
+        <div class="game-over" id="gameOver">
+
+            <div class="game-over-card">
+
+                <h2>🍎 Game Over!</h2>
+
+                <p>Your Score</p>
+
+                <div class="final-score" id="finalScore">
+                    0
+                </div>
+
+                <p id="finalMessage">
+                    Great job!
+                </p>
+
+                <button class="restart" id="restartBtn">
+                    PLAY AGAIN
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="ground">
+            <div class="grass"></div>
+        </div>
+
+    </div>
+
+    <div class="instructions">
+        Catch the 🍎 before they hit the ground!
+    </div>
+
+</div>
+
+
+<script>
+
+const gameArea = document.getElementById("gameArea");
+const basket = document.getElementById("basket");
+
+const scoreDisplay = document.getElementById("score");
+const livesDisplay = document.getElementById("lives");
+const levelDisplay = document.getElementById("level");
+const bestDisplay = document.getElementById("best");
+
+const startScreen = document.getElementById("startScreen");
+const gameOver = document.getElementById("gameOver");
+
+const startBtn = document.getElementById("startBtn");
+const restartBtn = document.getElementById("restartBtn");
+
+const finalScore = document.getElementById("finalScore");
+const finalMessage = document.getElementById("finalMessage");
+
+const leftBtn = document.getElementById("leftBtn");
+const rightBtn = document.getElementById("rightBtn");
+
+
+let score = 0;
+let lives = 3;
+let level = 1;
+
+let basketX = 50;
+
+let gameRunning = false;
+
+let apples = [];
+
+let spawnTimer;
+let animationFrame;
+
+let bestScore =
+    Number(localStorage.getItem("appleBasketBest")) || 0;
+
+bestDisplay.textContent = bestScore;
+
+
+/* =========================
+   START GAME
+========================= */
+
+function startGame(){
+
+    score = 0;
+    lives = 3;
+    level = 1;
+    basketX = 50;
+
+    scoreDisplay.textContent = score;
+    levelDisplay.textContent = level;
+
+    updateLives();
+
+    basket.style.left = basketX + "%";
+
+    startScreen.style.display = "none";
+    gameOver.style.display = "none";
+
+    clearApples();
+
+    gameRunning = true;
+
+    spawnApple();
+
+    spawnTimer = setInterval(()=>{
+
+        spawnApple();
+
+    },800);
+
+    animationFrame = requestAnimationFrame(updateGame);
+}
+
+
+/* =========================
+   SPAWN APPLE
+========================= */
+
+function spawnApple(){
+
+    if(!gameRunning) return;
+
+    const apple = document.createElement("div");
+
+    apple.className = "apple";
+    apple.textContent = "🍎";
+
+    const maxX =
+        gameArea.clientWidth - 50;
+
+    const x =
+        Math.random() * maxX;
+
+    apple.style.left = x + "px";
+    apple.style.top = "-55px";
+
+    gameArea.appendChild(apple);
+
+    apples.push({
+        element:apple,
+        x:x,
+        y:-55,
+        speed:2.5 + level * .5 + Math.random()*1.5
+    });
+
+}
+
+
+/* =========================
+   UPDATE GAME
+========================= */
+
+function updateGame(){
+
+    if(!gameRunning) return;
+
+    const basketRect =
+        basket.getBoundingClientRect();
+
+    apples.forEach((apple,index)=>{
+
+        apple.y += apple.speed;
+
+        apple.element.style.top =
+            apple.y + "px";
+
+
+        const appleRect =
+            apple.element.getBoundingClientRect();
+
+
+        /* Catch detection */
+
+        if(
+
+            appleRect.bottom >= basketRect.top &&
+
+            appleRect.left <
+            basketRect.right &&
+
+            appleRect.right >
+            basketRect.left
+
+        ){
+
+            catchApple(index);
+
+        }
+
+
+        /* Miss detection */
+
+        else if(
+            apple.y >
+            gameArea.clientHeight
+        ){
+
+            missApple(index);
+
+        }
+
+    });
+
+
+    animationFrame =
+        requestAnimationFrame(updateGame);
+
+}
+
+
+/* =========================
+   CATCH APPLE
+========================= */
+
+function catchApple(index){
+
+    const apple = apples[index];
+
+    if(!apple) return;
+
+    apple.element.remove();
+
+    apples.splice(index,1);
+
+    score += 10;
+
+    scoreDisplay.textContent = score;
+
+
+    /* Increase level */
+
+    const newLevel =
+        Math.floor(score / 100) + 1;
+
+    if(newLevel !== level){
+
+        level = newLevel;
+
+        levelDisplay.textContent = level;
+    }
+
+
+    /* Best score */
+
+    if(score > bestScore){
+
+        bestScore = score;
+
+        localStorage.setItem(
+            "appleBasketBest",
+            bestScore
+        );
+
+        bestDisplay.textContent =
+            bestScore;
+
+    }
+
+}
+
+
+/* =========================
+   MISS APPLE
+========================= */
+
+function missApple(index){
+
+    const apple = apples[index];
+
+    if(!apple) return;
+
+    apple.element.remove();
+
+    apples.splice(index,1);
+
+    lives--;
+
+    updateLives();
+
+
+    if(lives <= 0){
+
+        endGame();
+
+    }
+
+}
+
+
+/* =========================
+   LIVES
+========================= */
+
+function updateLives(){
+
+    livesDisplay.textContent =
+        "❤️".repeat(lives) +
+        "🖤".repeat(3-lives);
+
+}
+
+
+/* =========================
+   MOVE BASKET
+========================= */
+
+function moveBasket(direction){
+
+    if(!gameRunning) return;
+
+    basketX += direction * 5;
+
+    if(basketX < 7){
+        basketX = 7;
+    }
+
+    if(basketX > 93){
+        basketX = 93;
+    }
+
+    basket.style.left =
+        basketX + "%";
+
+}
+
+
+/* =========================
+   KEYBOARD
+========================= */
+
+document.addEventListener("keydown",(event)=>{
+
+    if(event.key === "ArrowLeft"){
+
+        event.preventDefault();
+
+        moveBasket(-1);
+
+    }
+
+    if(event.key === "ArrowRight"){
+
+        event.preventDefault();
+
+        moveBasket(1);
+
+    }
+
+});
+
+
+/* =========================
+   MOBILE CONTROLS
+========================= */
+
+let leftInterval;
+let rightInterval;
+
+
+function startMoving(direction){
+
+    moveBasket(direction);
+
+    const interval =
+        setInterval(()=>{
+            moveBasket(direction);
+        },80);
+
+    return interval;
+
+}
+
+
+leftBtn.addEventListener("pointerdown",()=>{
+
+    clearInterval(leftInterval);
+
+    leftInterval =
+        startMoving(-1);
+
+});
+
+
+leftBtn.addEventListener("pointerup",()=>{
+
+    clearInterval(leftInterval);
+
+});
+
+
+leftBtn.addEventListener("pointerleave",()=>{
+
+    clearInterval(leftInterval);
+
+});
+
+
+rightBtn.addEventListener("pointerdown",()=>{
+
+    clearInterval(rightInterval);
+
+    rightInterval =
+        startMoving(1);
+
+});
+
+
+rightBtn.addEventListener("pointerup",()=>{
+
+    clearInterval(rightInterval);
+
+});
+
+
+rightBtn.addEventListener("pointerleave",()=>{
+
+    clearInterval(rightInterval);
+
+});
+
+
+/* =========================
+   END GAME
+========================= */
+
+function endGame(){
+
+    gameRunning = false;
+
+    clearInterval(spawnTimer);
+
+    cancelAnimationFrame(animationFrame);
+
+    finalScore.textContent = score;
+
+    if(score >= 500){
+
+        finalMessage.textContent =
+            "🔥 Amazing! You're an apple-catching master!";
+
+    }
+
+    else if(score >= 250){
+
+        finalMessage.textContent =
+            "🌟 Great job! Excellent catching!";
+
+    }
+
+    else if(score >= 100){
+
+        finalMessage.textContent =
+            "👏 Nice work! Try to catch even more!";
+
+    }
+
+    else{
+
+        finalMessage.textContent =
+            "💪 Keep practicing and try again!";
+
+    }
+
+    gameOver.style.display = "flex";
+
+}
+
+
+/* =========================
+   CLEAR APPLES
+========================= */
+
+function clearApples(){
+
+    apples.forEach(apple=>{
+
+        apple.element.remove();
+
+    });
+
+    apples = [];
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+startBtn.addEventListener(
+    "click",
+    startGame
+);
+
+restartBtn.addEventListener(
+    "click",
+    startGame
+);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,3584 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VOLTERRA MOTORS | Premium Automobile Showroom</title>
+
+<style>
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f5f5;
+    color:#111;
+    transition:.3s;
+}
+
+body.dark{
+    background:#0b0d10;
+    color:#fff;
+}
+
+button,
+input,
+select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+    --red:#e21b2d;
+    --red-dark:#b81020;
+    --black:#090a0c;
+    --gray:#777;
+    --light:#f5f5f5;
+    --card:#fff;
+    --border:#e5e5e5;
+}
+
+body.dark{
+    --light:#0b0d10;
+    --card:#15181d;
+    --border:#292d33;
+    --gray:#a6a6a6;
+}
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar{
+    background:#080808;
+    color:#bbb;
+    padding:9px 7%;
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+}
+
+.topbar-right{
+    display:flex;
+    gap:20px;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar{
+    height:76px;
+    background:var(--card);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:var(--red);
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+.nav-links a{
+    font-size:14px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--red);
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn{
+    width:40px;
+    height:40px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:inherit;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:17px;
+}
+
+.icon-btn:hover{
+    border-color:var(--red);
+    color:var(--red);
+}
+
+.menu{
+    display:none;
+    font-size:25px;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    min-height:680px;
+    background:
+        linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.25)),
+        url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=90");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    padding:70px 8%;
+    color:white;
+}
+
+.hero-content{
+    max-width:720px;
+}
+
+.hero-label{
+    color:#ff5665;
+    font-size:13px;
+    letter-spacing:5px;
+    font-weight:800;
+}
+
+.hero h1{
+    font-size:72px;
+    line-height:1;
+    margin:20px 0;
+}
+
+.hero h1 span{
+    color:#e21b2d;
+}
+
+.hero p{
+    color:#ddd;
+    font-size:18px;
+    line-height:1.7;
+    max-width:620px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 25px;
+    border-radius:5px;
+    border:none;
+    font-weight:800;
+    transition:.3s;
+}
+
+.btn-red{
+    background:var(--red);
+    color:white;
+}
+
+.btn-red:hover{
+    background:var(--red-dark);
+    transform:translateY(-2px);
+}
+
+.btn-outline{
+    border:1px solid white;
+    color:white;
+    background:transparent;
+}
+
+.btn-outline:hover{
+    background:white;
+    color:#111;
+}
+
+/* =========================================================
+   HERO STATS
+========================================================= */
+
+.hero-stats{
+    display:flex;
+    gap:50px;
+    margin-top:55px;
+}
+
+.hero-stat strong{
+    display:block;
+    font-size:25px;
+}
+
+.hero-stat span{
+    color:#bbb;
+    font-size:12px;
+}
+
+/* =========================================================
+   SEARCH PANEL
+========================================================= */
+
+.search-panel{
+    max-width:1120px;
+    margin:-45px auto 0;
+    position:relative;
+    z-index:5;
+    background:var(--card);
+    padding:22px;
+    border-radius:12px;
+    box-shadow:0 15px 50px rgba(0,0,0,.16);
+}
+
+.search-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr auto;
+    gap:12px;
+}
+
+.search-grid input,
+.search-grid select{
+    width:100%;
+    padding:15px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:inherit;
+    border-radius:5px;
+    outline:none;
+}
+
+.search-grid button{
+    border:none;
+    background:var(--red);
+    color:white;
+    padding:0 25px;
+    border-radius:5px;
+    font-weight:800;
+}
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+section{
+    padding:90px 7%;
+}
+
+.section-head{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-head small{
+    color:var(--red);
+    letter-spacing:4px;
+    font-weight:800;
+}
+
+.section-head h2{
+    font-size:42px;
+    margin:10px 0;
+}
+
+.section-head p{
+    color:var(--gray);
+    max-width:650px;
+    margin:auto;
+    line-height:1.7;
+}
+
+/* =========================================================
+   QUICK CATEGORIES
+========================================================= */
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.category{
+    height:180px;
+    border-radius:10px;
+    overflow:hidden;
+    position:relative;
+    color:white;
+    cursor:pointer;
+}
+
+.category img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.category:hover img{
+    transform:scale(1.1);
+}
+
+.category-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(transparent,rgba(0,0,0,.8));
+    display:flex;
+    align-items:flex-end;
+    padding:20px;
+}
+
+.category h3{
+    font-size:21px;
+}
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+.filters{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:35px;
+}
+
+.filter{
+    padding:10px 22px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:inherit;
+    border-radius:30px;
+    font-weight:700;
+}
+
+.filter.active,
+.filter:hover{
+    background:var(--red);
+    color:white;
+    border-color:var(--red);
+}
+
+/* =========================================================
+   CAR GRID
+========================================================= */
+
+.car-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.car-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+    transition:.35s;
+    position:relative;
+}
+
+.car-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(0,0,0,.13);
+}
+
+.car-img{
+    height:235px;
+    position:relative;
+    overflow:hidden;
+}
+
+.car-img img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.car-card:hover .car-img img{
+    transform:scale(1.07);
+}
+
+.badge{
+    position:absolute;
+    left:15px;
+    top:15px;
+    background:var(--red);
+    color:white;
+    padding:7px 12px;
+    font-size:11px;
+    font-weight:800;
+    border-radius:4px;
+}
+
+.wishlist{
+    position:absolute;
+    right:15px;
+    top:15px;
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.95);
+    font-size:18px;
+}
+
+.wishlist.active{
+    color:var(--red);
+}
+
+.car-body{
+    padding:22px;
+}
+
+.car-body h3{
+    font-size:22px;
+}
+
+.car-type{
+    color:var(--gray);
+    font-size:13px;
+    margin-top:5px;
+}
+
+.price{
+    font-size:23px;
+    font-weight:900;
+    margin:17px 0;
+}
+
+.price small{
+    font-size:11px;
+    color:var(--gray);
+    font-weight:normal;
+}
+
+.spec-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:14px 0;
+}
+
+.spec{
+    text-align:center;
+    font-size:11px;
+    color:var(--gray);
+}
+
+.spec strong{
+    display:block;
+    color:inherit;
+    font-size:13px;
+    margin-bottom:4px;
+}
+
+.card-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-top:17px;
+}
+
+.card-actions button{
+    padding:12px;
+    border-radius:5px;
+    font-weight:800;
+}
+
+.details{
+    border:1px solid var(--border);
+    background:var(--card);
+    color:inherit;
+}
+
+.buy{
+    border:none;
+    background:var(--red);
+    color:white;
+}
+
+/* =========================================================
+   FEATURED CAR
+========================================================= */
+
+.featured{
+    background:#090a0c;
+    color:white;
+}
+
+.featured-wrapper{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    align-items:center;
+    gap:60px;
+}
+
+.featured-image{
+    position:relative;
+}
+
+.featured-image img{
+    width:100%;
+    border-radius:15px;
+}
+
+.featured-tag{
+    position:absolute;
+    top:20px;
+    left:20px;
+    background:var(--red);
+    padding:9px 15px;
+    font-size:11px;
+    font-weight:800;
+}
+
+.featured-content small{
+    color:#ff5260;
+    letter-spacing:4px;
+    font-weight:800;
+}
+
+.featured-content h2{
+    font-size:48px;
+    margin:12px 0;
+}
+
+.featured-content p{
+    color:#aaa;
+    line-height:1.8;
+}
+
+.featured-price{
+    font-size:32px;
+    font-weight:900;
+    margin:25px 0;
+}
+
+.featured-specs{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.featured-spec{
+    border:1px solid #2c2c2c;
+    padding:15px;
+    border-radius:7px;
+}
+
+.featured-spec strong{
+    display:block;
+    font-size:18px;
+}
+
+.featured-spec span{
+    color:#888;
+    font-size:11px;
+}
+
+/* =========================================================
+   EMI CALCULATOR
+========================================================= */
+
+.emi-section{
+    background:var(--card);
+}
+
+.emi-wrapper{
+    max-width:1050px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.emi-box{
+    background:var(--light);
+    border:1px solid var(--border);
+    padding:30px;
+    border-radius:12px;
+}
+
+.emi-box h3{
+    margin-bottom:25px;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.input-group input{
+    width:100%;
+    padding:13px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:inherit;
+    border-radius:5px;
+}
+
+.range-value{
+    color:var(--red);
+    font-weight:800;
+    margin-top:6px;
+}
+
+.emi-result{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:#111;
+    color:white;
+    border-radius:12px;
+    padding:40px;
+}
+
+.emi-result small{
+    color:#aaa;
+}
+
+.emi-result h2{
+    color:#ff4d5c;
+    font-size:45px;
+    margin:15px 0;
+}
+
+.result-line{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid #292929;
+    padding:12px 0;
+    color:#aaa;
+}
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.services{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.service{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:30px 20px;
+    text-align:center;
+    transition:.3s;
+}
+
+.service:hover{
+    transform:translateY(-5px);
+    border-color:var(--red);
+}
+
+.service-icon{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.service h3{
+    margin-bottom:10px;
+}
+
+.service p{
+    color:var(--gray);
+    line-height:1.6;
+    font-size:13px;
+}
+
+/* =========================================================
+   REVIEWS
+========================================================= */
+
+.review-section{
+    background:#f0f0f0;
+}
+
+body.dark .review-section{
+    background:#111418;
+}
+
+.reviews{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.review{
+    background:var(--card);
+    padding:28px;
+    border-radius:10px;
+}
+
+.stars{
+    color:#f5a400;
+    margin-bottom:15px;
+}
+
+.review p{
+    color:var(--gray);
+    line-height:1.7;
+    font-size:14px;
+}
+
+.reviewer{
+    margin-top:20px;
+    font-weight:800;
+}
+
+.reviewer span{
+    display:block;
+    color:var(--gray);
+    font-size:12px;
+    font-weight:normal;
+    margin-top:4px;
+}
+
+/* =========================================================
+   OFFER
+========================================================= */
+
+.offer{
+    background:linear-gradient(120deg,#c81020,#f02b3d);
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:55px 8%;
+}
+
+.offer h2{
+    font-size:38px;
+    margin-bottom:8px;
+}
+
+.offer p{
+    color:#ffd9dd;
+}
+
+.offer button{
+    background:white;
+    color:var(--red);
+    border:none;
+    padding:15px 28px;
+    border-radius:5px;
+    font-weight:900;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:45px;
+}
+
+.contact-info h2{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.contact-info>p{
+    color:var(--gray);
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+.contact-item{
+    margin-bottom:20px;
+}
+
+.contact-item strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.contact-item span{
+    color:var(--gray);
+}
+
+.contact-form{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:30px;
+    border-radius:10px;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select{
+    width:100%;
+    padding:14px;
+    margin-bottom:13px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:inherit;
+    border-radius:5px;
+    outline:none;
+}
+
+.contact-form textarea{
+    height:110px;
+    resize:none;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    background:#070707;
+    color:white;
+    padding:55px 7% 25px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:35px;
+    margin-bottom:35px;
+}
+
+.footer-grid h3{
+    margin-bottom:15px;
+}
+
+.footer-grid p,
+.footer-grid a{
+    color:#999;
+    font-size:13px;
+    line-height:2;
+}
+
+.footer-grid a{
+    display:block;
+}
+
+.footer-grid a:hover{
+    color:white;
+}
+
+.copyright{
+    border-top:1px solid #222;
+    padding-top:20px;
+    text-align:center;
+    color:#666;
+    font-size:12px;
+}
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.78);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:3000;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:520px;
+    max-height:90vh;
+    overflow:auto;
+    background:var(--card);
+    color:inherit;
+    border-radius:12px;
+    padding:30px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:18px;
+    top:13px;
+    font-size:27px;
+    cursor:pointer;
+    color:var(--gray);
+}
+
+.modal-box h2{
+    margin-bottom:8px;
+}
+
+.modal-box>p{
+    color:var(--gray);
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.modal-box input,
+.modal-box select{
+    width:100%;
+    padding:13px;
+    margin-bottom:12px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:inherit;
+    border-radius:5px;
+}
+
+.modal-submit{
+    width:100%;
+    padding:14px;
+    background:var(--red);
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-weight:800;
+}
+
+.detail-img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:8px;
+    margin-bottom:20px;
+}
+
+.detail-price{
+    color:var(--red);
+    font-size:27px;
+    font-weight:900;
+    margin:12px 0;
+}
+
+.detail-description{
+    color:var(--gray);
+    line-height:1.7;
+    margin-bottom:20px;
+}
+
+/* =========================================================
+   COMPARE BAR
+========================================================= */
+
+.compare-bar{
+    position:fixed;
+    left:50%;
+    bottom:20px;
+    transform:translateX(-50%) translateY(120px);
+    width:min(900px,90%);
+    background:#111;
+    color:white;
+    padding:15px 20px;
+    border-radius:10px;
+    z-index:2000;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    transition:.4s;
+    box-shadow:0 10px 40px rgba(0,0,0,.4);
+}
+
+.compare-bar.show{
+    transform:translateX(-50%) translateY(0);
+}
+
+.compare-list{
+    display:flex;
+    gap:10px;
+    font-size:13px;
+}
+
+.compare-car{
+    background:#282828;
+    padding:8px 12px;
+    border-radius:5px;
+}
+
+.compare-button{
+    background:var(--red);
+    color:white;
+    border:none;
+    padding:10px 17px;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    background:#111;
+    color:white;
+    padding:15px 22px;
+    border-radius:7px;
+    z-index:5000;
+    opacity:0;
+    transform:translateY(100px);
+    transition:.4s;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+
+    .car-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .services{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .reviews{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .featured-wrapper{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:850px){
+
+    .topbar{
+        display:none;
+    }
+
+    .navbar{
+        height:70px;
+    }
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:70px;
+        left:0;
+        width:100%;
+        background:var(--card);
+        flex-direction:column;
+        gap:0;
+        border-bottom:1px solid var(--border);
+    }
+
+    .nav-links.mobile{
+        display:flex;
+    }
+
+    .nav-links li{
+        padding:17px 25px;
+        border-bottom:1px solid var(--border);
+    }
+
+    .menu{
+        display:block;
+    }
+
+    .hero h1{
+        font-size:50px;
+    }
+
+    .search-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .search-grid button{
+        padding:15px;
+    }
+
+    .emi-wrapper{
+        grid-template-columns:1fr;
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    section{
+        padding:65px 5%;
+    }
+
+    .hero{
+        min-height:600px;
+        padding:50px 6%;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .hero-stats{
+        gap:20px;
+    }
+
+    .hero-stat strong{
+        font-size:20px;
+    }
+
+    .search-grid{
+        grid-template-columns:1fr;
+    }
+
+    .categories{
+        grid-template-columns:1fr;
+    }
+
+    .car-grid{
+        grid-template-columns:1fr;
+    }
+
+    .services{
+        grid-template-columns:1fr;
+    }
+
+    .reviews{
+        grid-template-columns:1fr;
+    }
+
+    .section-head h2{
+        font-size:32px;
+    }
+
+    .featured-content h2{
+        font-size:37px;
+    }
+
+    .offer{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .compare-bar{
+        flex-direction:column;
+        gap:12px;
+        align-items:stretch;
+    }
+
+    .compare-list{
+        flex-wrap:wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+<div class="topbar">
+
+    <div>
+        Premium Automobile Showroom
+    </div>
+
+    <div class="topbar-right">
+        <span>📞 +91 98765 43210</span>
+        <span>📍 Kochi, Kerala</span>
+        <span>Mon-Sat 9AM-7PM</span>
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        VOLTERRA<span>MOTORS</span>
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+
+        <li><a href="#home">Home</a></li>
+        <li><a href="#cars">Cars</a></li>
+        <li><a href="#featured">Featured</a></li>
+        <li><a href="#finance">Finance</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+
+    </ul>
+
+    <div class="nav-actions">
+
+        <button class="icon-btn" onclick="toggleDarkMode()" title="Dark Mode">
+            ◐
+        </button>
+
+        <button class="icon-btn" onclick="showWishlist()" title="Wishlist">
+            ♡
+        </button>
+
+        <div class="menu" onclick="toggleMenu()">
+            ☰
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            THE FUTURE OF DRIVING
+        </div>
+
+        <h1>
+            Find Your<br>
+            <span>Perfect Drive.</span>
+        </h1>
+
+        <p>
+            Discover a hand-picked collection of premium,
+            performance and electric vehicles. Your next
+            adventure starts here.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#cars" class="btn btn-red">
+                Explore Collection
+            </a>
+
+            <button class="btn btn-outline" onclick="openTestDrive()">
+                Book Test Drive
+            </button>
+
+        </div>
+
+        <div class="hero-stats">
+
+            <div class="hero-stat">
+                <strong>250+</strong>
+                <span>Cars Delivered</span>
+            </div>
+
+            <div class="hero-stat">
+                <strong>18+</strong>
+                <span>Premium Brands</span>
+            </div>
+
+            <div class="hero-stat">
+                <strong>4.9/5</strong>
+                <span>Customer Rating</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SEARCH
+========================================================= -->
+
+<div class="search-panel">
+
+    <div class="search-grid">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search your dream car..."
+        >
+
+        <select id="category">
+            <option value="all">All Categories</option>
+            <option value="suv">SUV</option>
+            <option value="sedan">Sedan</option>
+            <option value="electric">Electric</option>
+            <option value="luxury">Luxury</option>
+            <option value="sports">Sports</option>
+        </select>
+
+        <select id="fuel">
+            <option value="all">All Fuel Types</option>
+            <option value="petrol">Petrol</option>
+            <option value="diesel">Diesel</option>
+            <option value="electric">Electric</option>
+            <option value="hybrid">Hybrid</option>
+        </select>
+
+        <button onclick="searchCars()">
+            Search
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CATEGORIES
+========================================================= -->
+
+<section>
+
+    <div class="section-head">
+
+        <small>EXPLORE</small>
+
+        <h2>
+            Find Your Perfect Type
+        </h2>
+
+        <p>
+            From practical SUVs to exciting sports cars,
+            explore vehicles built for every lifestyle.
+        </p>
+
+    </div>
+
+
+    <div class="categories">
+
+        <div class="category" onclick="filterCategory('suv')">
+
+            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=85">
+
+            <div class="category-overlay">
+                <h3>Premium SUVs</h3>
+            </div>
+
+        </div>
+
+
+        <div class="category" onclick="filterCategory('sedan')">
+
+            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=85">
+
+            <div class="category-overlay">
+                <h3>Luxury Sedans</h3>
+            </div>
+
+        </div>
+
+
+        <div class="category" onclick="filterCategory('electric')">
+
+            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=900&q=85">
+
+            <div class="category-overlay">
+                <h3>Electric Cars</h3>
+            </div>
+
+        </div>
+
+
+        <div class="category" onclick="filterCategory('sports')">
+
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=85">
+
+            <div class="category-overlay">
+                <h3>Sports Cars</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CARS
+========================================================= -->
+
+<section id="cars">
+
+    <div class="section-head">
+
+        <small>OUR COLLECTION</small>
+
+        <h2>
+            Latest Vehicles
+        </h2>
+
+        <p>
+            Browse our latest arrivals and choose the vehicle
+            that fits your style.
+        </p>
+
+    </div>
+
+
+    <div class="filters">
+
+        <button class="filter active" onclick="filterCars('all',this)">
+            All
+        </button>
+
+        <button class="filter" onclick="filterCars('suv',this)">
+            SUVs
+        </button>
+
+        <button class="filter" onclick="filterCars('sedan',this)">
+            Sedans
+        </button>
+
+        <button class="filter" onclick="filterCars('electric',this)">
+            Electric
+        </button>
+
+        <button class="filter" onclick="filterCars('luxury',this)">
+            Luxury
+        </button>
+
+        <button class="filter" onclick="filterCars('sports',this)">
+            Sports
+        </button>
+
+    </div>
+
+
+    <div class="car-grid" id="carGrid">
+
+
+        <!-- CAR 1 -->
+
+        <div class="car-card"
+             data-category="suv"
+             data-fuel="petrol"
+             data-name="Range Rover Sport">
+
+            <div class="car-img">
+
+                <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1000&q=85">
+
+                <div class="badge">NEW</div>
+
+                <button class="wishlist" onclick="toggleWishlist(this,'Range Rover Sport')">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="car-body">
+
+                <h3>Range Rover Sport</h3>
+
+                <div class="car-type">
+                    Luxury SUV
+                </div>
+
+                <div class="price">
+                    ₹1.64 Cr
+                    <small>ex-showroom</small>
+                </div>
+
+                <div class="spec-row">
+
+                    <div class="spec">
+                        <strong>3.0L</strong>
+                        Engine
+                    </div>
+
+                    <div class="spec">
+                        <strong>8 Speed</strong>
+                        Auto
+                    </div>
+
+                    <div class="spec">
+                        <strong>AWD</strong>
+                        Drive
+                    </div>
+
+                </div>
+
+                <div class="card-actions">
+
+                    <button class="details"
+                        onclick="showDetails(
+                        'Range Rover Sport',
+                        '₹1.64 Cr',
+                        'Luxury performance SUV with premium interiors, advanced technology and powerful all-wheel drive.',
+                        'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1000&q=85'
+                        )">
+                        Details
+                    </button>
+
+                    <button class="buy"
+                        onclick="openBuy('Range Rover Sport')">
+                        Buy Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CAR 2 -->
+
+        <div class="car-card"
+             data-category="electric"
+             data-fuel="electric"
+             data-name="BMW iX">
+
+            <div class="car-img">
+
+                <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1000&q=85">
+
+                <div class="badge">ELECTRIC</div>
+
+                <button class="wishlist" onclick="toggleWishlist(this,'BMW iX')">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="car-body">
+
+                <h3>BMW iX</h3>
+
+                <div class="car-type">
+                    Premium Electric SUV
+                </div>
+
+                <div class="price">
+                    ₹1.21 Cr
+                    <small>ex-showroom</small>
+                </div>
+
+                <div class="spec-row">
+
+                    <div class="spec">
+                        <strong>326 HP</strong>
+                        Power
+                    </div>
+
+                    <div class="spec">
+                        <strong>425 KM</strong>
+                        Range
+                    </div>
+
+                    <div class="spec">
+                        <strong>AWD</strong>
+                        Drive
+                    </div>
+
+                </div>
+
+                <div class="card-actions">
+
+                    <button class="details"
+                        onclick="showDetails(
+                        'BMW iX',
+                        '₹1.21 Cr',
+                        'Premium electric SUV combining intelligent technology, refined comfort and impressive electric range.',
+                        'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1000&q=85'
+                        )">
+                        Details
+                    </button>
+
+                    <button class="buy"
+                        onclick="openBuy('BMW iX')">
+                        Buy Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CAR 3 -->
+
+        <div class="car-card"
+             data-category="sedan"
+             data-fuel="petrol"
+             data-name="Mercedes Benz E Class">
+
+            <div class="car-img">
+
+                <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1000&q=85">
+
+                <div class="badge">FEATURED</div>
+
+                <button class="wishlist" onclick="toggleWishlist(this,'Mercedes-Benz E-Class')">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="car-body">
+
+                <h3>Mercedes-Benz E-Class</h3>
+
+                <div class="car-type">
+                    Luxury Sedan
+                </div>
+
+                <div class="price">
+                    ₹78.50 Lakh
+                    <small>ex-showroom</small>
+                </div>
+
+                <div class="spec-row">
+
+                    <div class="spec">
+                        <strong>2.0L</strong>
+                        Engine
+                    </div>
+
+                    <div class="spec">
+                        <strong>9 Speed</strong>
+                        Auto
+                    </div>
+
+                    <div class="spec">
+                        <strong>RWD</strong>
+                        Drive
+                    </div>
+
+                </div>
+
+                <div class="card-actions">
+
+                    <button class="details"
+                        onclick="showDetails(
+                        'Mercedes-Benz E-Class',
+                        '₹78.50 Lakh',
+                        'Elegant luxury sedan with advanced technology, exceptional comfort and premium craftsmanship.',
+                        'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1000&q=85'
+                        )">
+                        Details
+                    </button>
+
+                    <button class="buy"
+                        onclick="openBuy('Mercedes-Benz E-Class')">
+                        Buy Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CAR 4 -->
+
+        <div class="car-card"
+             data-category="luxury"
+             data-fuel="petrol"
+             data-name="Porsche Cayenne">
+
+            <div class="car-img">
+
+                <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=1000&q=85">
+
+                <div class="badge">LUXURY</div>
+
+                <button class="wishlist" onclick="toggleWishlist(this,'Porsche Cayenne')">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="car-body">
+
+                <h3>Porsche Cayenne</h3>
+
+                <div class="car-type">
+                    Luxury Performance SUV
+                </div>
+
+                <div class="price">
+                    ₹1.36 Cr
+                    <small>ex-showroom</small>
+                </div>
+
+                <div class="spec-row">
+
+                    <div class="spec">
+                        <strong>3.0L</strong>
+                        Engine
+                    </div>
+
+                    <div class="spec">
+                        <strong>8 Speed</strong>
+                        Auto
+                    </div>
+
+                    <div class="spec">
+                        <strong>AWD</strong>
+                        Drive
+                    </div>
+
+                </div>
+
+                <div class="card-actions">
+
+                    <button class="details"
+                        onclick="showDetails(
+                        'Porsche Cayenne',
+                        '₹1.36 Cr',
+                        'Performance-focused luxury SUV with dynamic handling and sophisticated premium interiors.',
+                        'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=1000&q=85'
+                        )">
+                        Details
+                    </button>
+
+                    <button class="buy"
+                        onclick="openBuy('Porsche Cayenne')">
+                        Buy Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CAR 5 -->
+
+        <div class="car-card"
+             data-category="sports"
+             data-fuel="petrol"
+             data-name="Porsche 911">
+
+            <div class="car-img">
+
+                <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1000&q=85">
+
+                <div class="badge">SPORTS</div>
+
+                <button class="wishlist" onclick="toggleWishlist(this,'Porsche 911')">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="car-body">
+
+                <h3>Porsche 911</h3>
+
+                <div class="car-type">
+                    Sports Car
+                </div>
+
+                <div class="price">
+                    ₹1.99 Cr
+                    <small>ex-showroom</small>
+                </div>
+
+                <div class="spec-row">
+
+                    <div class="spec">
+                        <strong>3.0L</strong>
+                        Twin Turbo
+                    </div>
+
+                    <div class="spec">
+                        <strong>450 HP</strong>
+                        Power
+                    </div>
+
+                    <div class="spec">
+                        <strong>RWD</strong>
+                        Drive
+                    </div>
+
+                </div>
+
+                <div class="card-actions">
+
+                    <button class="details"
+                        onclick="showDetails(
+                        'Porsche 911',
+                        '₹1.99 Cr',
+                        'Iconic sports car delivering thrilling performance, exceptional handling and unmistakable design.',
+                        'https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1000&q=85'
+                        )">
+                        Details
+                    </button>
+
+                    <button class="buy"
+                        onclick="openBuy('Porsche 911')">
+                        Buy Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CAR 6 -->
+
+        <div class="car-card"
+             data-category="electric"
+             data-fuel="electric"
+             data-name="Tesla Model 3">
+
+            <div class="car-img">
+
+                <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1000&q=85">
+
+                <div class="badge">EV</div>
+
+                <button class="wishlist" onclick="toggleWishlist(this,'Tesla Model 3')">
+                    ♡
+                </button>
+
+            </div>
+
+            <div class="car-body">
+
+                <h3>Tesla Model 3</h3>
+
+                <div class="car-type">
+                    Electric Sedan
+                </div>
+
+                <div class="price">
+                    ₹45.00 Lakh
+                    <small>estimated</small>
+                </div>
+
+                <div class="spec-row">
+
+                    <div class="spec">
+                        <strong>283 HP</strong>
+                        Power
+                    </div>
+
+                    <div class="spec">
+                        <strong>500 KM+</strong>
+                        Range
+                    </div>
+
+                    <div class="spec">
+                        <strong>AWD</strong>
+                        Drive
+                    </div>
+
+                </div>
+
+                <div class="card-actions">
+
+                    <button class="details"
+                        onclick="showDetails(
+                        'Tesla Model 3',
+                        '₹45.00 Lakh',
+                        'Technology-focused electric sedan designed for efficient performance and long-distance driving.',
+                        'https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1000&q=85'
+                        )">
+                        Details
+                    </button>
+
+                    <button class="buy"
+                        onclick="openBuy('Tesla Model 3')">
+                        Buy Now
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FEATURED CAR
+========================================================= -->
+
+<section class="featured" id="featured">
+
+    <div class="featured-wrapper">
+
+        <div class="featured-image">
+
+            <div class="featured-tag">
+                CAR OF THE WEEK
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=90">
+
+        </div>
+
+        <div class="featured-content">
+
+            <small>FEATURED VEHICLE</small>
+
+            <h2>
+                Mercedes-Benz E-Class
+            </h2>
+
+            <p>
+                A perfect combination of elegant design,
+                intelligent technology and refined performance.
+                Experience luxury designed around you.
+            </p>
+
+            <div class="featured-price">
+                ₹78.50 Lakh
+            </div>
+
+            <div class="featured-specs">
+
+                <div class="featured-spec">
+                    <strong>2.0L</strong>
+                    <span>Engine</span>
+                </div>
+
+                <div class="featured-spec">
+                    <strong>204 HP</strong>
+                    <span>Power</span>
+                </div>
+
+                <div class="featured-spec">
+                    <strong>9G</strong>
+                    <span>Automatic</span>
+                </div>
+
+            </div>
+
+            <button
+                class="btn btn-red"
+                onclick="openBuy('Mercedes-Benz E-Class')"
+            >
+                Enquire Now
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     EMI CALCULATOR
+========================================================= -->
+
+<section class="emi-section" id="finance">
+
+    <div class="section-head">
+
+        <small>SMART FINANCE</small>
+
+        <h2>
+            Calculate Your EMI
+        </h2>
+
+        <p>
+            Estimate your monthly car payment before
+            visiting the showroom.
+        </p>
+
+    </div>
+
+
+    <div class="emi-wrapper">
+
+        <div class="emi-box">
+
+            <h3>
+                Finance Calculator
+            </h3>
+
+            <div class="input-group">
+
+                <label>
+                    Car Price (₹)
+                </label>
+
+                <input
+                    type="number"
+                    id="loanAmount"
+                    value="5000000"
+                    oninput="calculateEMI()"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Down Payment (₹)
+                </label>
+
+                <input
+                    type="number"
+                    id="downPayment"
+                    value="1000000"
+                    oninput="calculateEMI()"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Interest Rate (%)
+                </label>
+
+                <input
+                    type="number"
+                    id="interest"
+                    value="8.5"
+                    step="0.1"
+                    oninput="calculateEMI()"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Loan Tenure (Years)
+                </label>
+
+                <input
+                    type="range"
+                    id="tenure"
+                    min="1"
+                    max="8"
+                    value="5"
+                    oninput="calculateEMI()"
+                >
+
+                <div class="range-value">
+                    <span id="tenureValue">5</span> Years
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="emi-result">
+
+            <small>
+                ESTIMATED MONTHLY EMI
+            </small>
+
+            <h2 id="emi">
+                ₹0
+            </h2>
+
+            <div class="result-line">
+                <span>Loan Amount</span>
+                <strong id="loanResult">₹0</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Interest Rate</span>
+                <strong id="interestResult">0%</strong>
+            </div>
+
+            <div class="result-line">
+                <span>Tenure</span>
+                <strong id="tenureResult">0 Years</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVICES
+========================================================= -->
+
+<section id="services">
+
+    <div class="section-head">
+
+        <small>OUR SERVICES</small>
+
+        <h2>
+            Everything Under One Roof
+        </h2>
+
+        <p>
+            More than just a showroom. We support you
+            before and after your purchase.
+        </p>
+
+    </div>
+
+
+    <div class="services">
+
+        <div class="service">
+
+            <div class="service-icon">🚘</div>
+
+            <h3>
+                Test Drive
+            </h3>
+
+            <p>
+                Experience your preferred vehicle
+                before making your decision.
+            </p>
+
+        </div>
+
+
+        <div class="service">
+
+            <div class="service-icon">💳</div>
+
+            <h3>
+                Car Finance
+            </h3>
+
+            <p>
+                Flexible finance assistance and
+                loan guidance.
+            </p>
+
+        </div>
+
+
+        <div class="service">
+
+            <div class="service-icon">🔧</div>
+
+            <h3>
+                Service
+            </h3>
+
+            <p>
+                Professional vehicle maintenance
+                and service support.
+            </p>
+
+        </div>
+
+
+        <div class="service">
+
+            <div class="service-icon">🔄</div>
+
+            <h3>
+                Exchange
+            </h3>
+
+            <p>
+                Upgrade your current vehicle
+                toward your next dream car.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REVIEWS
+========================================================= -->
+
+<section class="review-section">
+
+    <div class="section-head">
+
+        <small>CUSTOMER STORIES</small>
+
+        <h2>
+            What Our Customers Say
+        </h2>
+
+    </div>
+
+
+    <div class="reviews">
+
+        <div class="review">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "The entire buying process was smooth and
+                transparent. The team helped me choose the
+                right vehicle without any pressure."
+            </p>
+
+            <div class="reviewer">
+                Arjun Menon
+                <span>BMW Owner</span>
+            </div>
+
+        </div>
+
+
+        <div class="review">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "Excellent showroom experience. The test drive
+                and finance assistance made everything very easy."
+            </p>
+
+            <div class="reviewer">
+                Rahul Thomas
+                <span>Mercedes-Benz Owner</span>
+            </div>
+
+        </div>
+
+
+        <div class="review">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "Beautiful collection of premium cars and
+                very helpful staff. Highly professional service."
+            </p>
+
+            <div class="reviewer">
+                Neha Joseph
+                <span>Audi Owner</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     OFFER
+========================================================= -->
+
+<section class="offer">
+
+    <div>
+
+        <h2>
+            Get Behind The Wheel.
+        </h2>
+
+        <p>
+            Book a complimentary test drive today.
+        </p>
+
+    </div>
+
+    <button onclick="openTestDrive()">
+        Book Test Drive
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section id="contact">
+
+    <div class="section-head">
+
+        <small>GET IN TOUCH</small>
+
+        <h2>
+            Visit Volterra Motors
+        </h2>
+
+        <p>
+            Our automotive specialists are ready to help
+            you find your next vehicle.
+        </p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+        <div class="contact-info">
+
+            <h2>
+                Let's Talk Cars.
+            </h2>
+
+            <p>
+                Whether you want to know more about a vehicle,
+                arrange a test drive or discuss financing,
+                our team is here to help.
+            </p>
+
+            <div class="contact-item">
+                <strong>📍 Showroom</strong>
+                <span>Main Road, Kochi, Kerala, India</span>
+            </div>
+
+            <div class="contact-item">
+                <strong>📞 Phone</strong>
+                <span>+91 98765 43210</span>
+            </div>
+
+            <div class="contact-item">
+                <strong>✉ Email</strong>
+                <span>hello@volterramotors.com</span>
+            </div>
+
+            <div class="contact-item">
+                <strong>🕒 Opening Hours</strong>
+                <span>Monday - Saturday | 9:00 AM - 7:00 PM</span>
+            </div>
+
+        </div>
+
+
+        <div class="contact-form">
+
+            <h3>
+                Send an Enquiry
+            </h3>
+
+            <form id="contactForm">
+
+                <input
+                    type="text"
+                    placeholder="Full Name"
+                    required
+                >
+
+                <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    required
+                >
+
+                <input
+                    type="email"
+                    placeholder="Email Address"
+                    required
+                >
+
+                <select required>
+
+                    <option value="">
+                        Select Vehicle
+                    </option>
+
+                    <option>Range Rover Sport</option>
+                    <option>BMW iX</option>
+                    <option>Mercedes-Benz E-Class</option>
+                    <option>Porsche Cayenne</option>
+                    <option>Porsche 911</option>
+                    <option>Tesla Model 3</option>
+
+                </select>
+
+                <textarea
+                    placeholder="Your message..."
+                ></textarea>
+
+                <button class="modal-submit">
+                    Send Enquiry
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+
+            <div class="logo">
+                VOLTERRA<span>MOTORS</span>
+            </div>
+
+            <p>
+                Premium vehicles. Exceptional service.
+                A better way to buy your next car.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Explore</h3>
+
+            <a href="#cars">Cars</a>
+            <a href="#featured">Featured</a>
+            <a href="#finance">Finance</a>
+            <a href="#services">Services</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>Services</h3>
+
+            <a href="#contact">Test Drive</a>
+            <a href="#contact">Finance</a>
+            <a href="#contact">Exchange</a>
+            <a href="#contact">Service</a>
+
+        </div>
+
+
+        <div>
+
+            <h3>Company</h3>
+
+            <a href="#home">About Us</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact">Privacy</a>
+            <a href="#contact">Terms</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 Volterra Motors. All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     BUY MODAL
+========================================================= -->
+
+<div class="modal" id="buyModal">
+
+    <div class="modal-box">
+
+        <div class="close" onclick="closeModal('buyModal')">
+            ×
+        </div>
+
+        <h2>
+            Buy / Enquire
+        </h2>
+
+        <p>
+            Tell us about yourself and our sales specialist
+            will contact you.
+        </p>
+
+        <form id="buyForm">
+
+            <input
+                id="selectedCar"
+                readonly
+            >
+
+            <input
+                id="buyerName"
+                placeholder="Full Name"
+                required
+            >
+
+            <input
+                id="buyerPhone"
+                placeholder="Phone Number"
+                required
+            >
+
+            <input
+                type="email"
+                placeholder="Email Address"
+                required
+            >
+
+            <select required>
+
+                <option value="">
+                    Purchase Preference
+                </option>
+
+                <option>
+                    Full Payment
+                </option>
+
+                <option>
+                    Car Loan
+                </option>
+
+                <option>
+                    Need Finance Assistance
+                </option>
+
+            </select>
+
+            <button class="modal-submit">
+                Submit Enquiry
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     DETAILS MODAL
+========================================================= -->
+
+<div class="modal" id="detailsModal">
+
+    <div class="modal-box">
+
+        <div class="close" onclick="closeModal('detailsModal')">
+            ×
+        </div>
+
+        <img
+            id="detailImage"
+            class="detail-img"
+        >
+
+        <h2 id="detailName">
+            Car
+        </h2>
+
+        <div
+            id="detailPrice"
+            class="detail-price"
+        >
+        </div>
+
+        <p
+            id="detailDescription"
+            class="detail-description"
+        >
+        </p>
+
+        <button
+            class="modal-submit"
+            onclick="buyFromDetails()"
+        >
+            Buy / Enquire
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TEST DRIVE MODAL
+========================================================= -->
+
+<div class="modal" id="testModal">
+
+    <div class="modal-box">
+
+        <div class="close" onclick="closeModal('testModal')">
+            ×
+        </div>
+
+        <h2>
+            Book a Test Drive
+        </h2>
+
+        <p>
+            Choose a vehicle and preferred date.
+        </p>
+
+        <form id="testForm">
+
+            <input
+                placeholder="Full Name"
+                required
+            >
+
+            <input
+                placeholder="Phone Number"
+                required
+            >
+
+            <select required>
+
+                <option value="">
+                    Select Vehicle
+                </option>
+
+                <option>Range Rover Sport</option>
+                <option>BMW iX</option>
+                <option>Mercedes-Benz E-Class</option>
+                <option>Porsche Cayenne</option>
+                <option>Porsche 911</option>
+                <option>Tesla Model 3</option>
+
+            </select>
+
+            <input
+                type="date"
+                id="testDate"
+                required
+            >
+
+            <button class="modal-submit">
+                Confirm Test Drive
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     WISHLIST MODAL
+========================================================= -->
+
+<div class="modal" id="wishlistModal">
+
+    <div class="modal-box">
+
+        <div class="close" onclick="closeModal('wishlistModal')">
+            ×
+        </div>
+
+        <h2>
+            ❤️ My Wishlist
+        </h2>
+
+        <p id="wishlistContent">
+            Your wishlist is empty.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     COMPARE BAR
+========================================================= -->
+
+<div class="compare-bar" id="compareBar">
+
+    <div class="compare-list" id="compareList">
+    </div>
+
+    <button
+        class="compare-button"
+        onclick="compareCars()"
+    >
+        Compare
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div class="toast" id="toast">
+    Successfully submitted!
+</div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMenu(){
+
+    document
+        .getElementById("navLinks")
+        .classList.toggle("mobile");
+
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+function toggleDarkMode(){
+
+    document.body.classList.toggle("dark");
+
+    const enabled =
+        document.body.classList.contains("dark");
+
+    localStorage.setItem(
+        "darkMode",
+        enabled
+    );
+
+}
+
+
+/* Restore dark mode */
+
+if(localStorage.getItem("darkMode")==="true"){
+    document.body.classList.add("dark");
+}
+
+
+/* =========================================================
+   CAR FILTER
+========================================================= */
+
+function filterCars(category,button){
+
+    document
+        .querySelectorAll(".filter")
+        .forEach(btn=>{
+            btn.classList.remove("active");
+        });
+
+    button.classList.add("active");
+
+    const cards =
+        document.querySelectorAll(".car-card");
+
+    cards.forEach(card=>{
+
+        if(
+            category==="all" ||
+            card.dataset.category===category
+        ){
+
+            card.style.display="block";
+
+        }else{
+
+            card.style.display="none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   CATEGORY SHORTCUT
+========================================================= */
+
+function filterCategory(category){
+
+    document
+        .getElementById("cars")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+    setTimeout(()=>{
+
+        const button =
+            [...document.querySelectorAll(".filter")]
+            .find(btn =>
+                btn.textContent
+                    .trim()
+                    .toLowerCase()
+                    === category
+            );
+
+        if(button){
+            filterCars(category,button);
+        }
+
+    },500);
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function searchCars(){
+
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+    const category =
+        document
+            .getElementById("category")
+            .value;
+
+    const fuel =
+        document
+            .getElementById("fuel")
+            .value;
+
+    document
+        .querySelectorAll(".car-card")
+        .forEach(card=>{
+
+            const name =
+                card.dataset.name
+                    .toLowerCase();
+
+            const carCategory =
+                card.dataset.category;
+
+            const carFuel =
+                card.dataset.fuel;
+
+            const nameMatch =
+                name.includes(search);
+
+            const categoryMatch =
+                category==="all" ||
+                category===carCategory;
+
+            const fuelMatch =
+                fuel==="all" ||
+                fuel===carFuel;
+
+            if(
+                nameMatch &&
+                categoryMatch &&
+                fuelMatch
+            ){
+
+                card.style.display="block";
+
+            }else{
+
+                card.style.display="none";
+
+            }
+
+        });
+
+    document
+        .getElementById("cars")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================================================
+   WISHLIST
+========================================================= */
+
+let wishlist=[];
+
+function toggleWishlist(button,name){
+
+    button.classList.toggle("active");
+
+    if(button.classList.contains("active")){
+
+        button.innerHTML="♥";
+
+        if(!wishlist.includes(name)){
+            wishlist.push(name);
+        }
+
+        showToast(
+            name+" added to wishlist"
+        );
+
+    }else{
+
+        button.innerHTML="♡";
+
+        wishlist =
+            wishlist.filter(
+                item=>item!==name
+            );
+
+        showToast(
+            name+" removed from wishlist"
+        );
+
+    }
+
+}
+
+
+function showWishlist(){
+
+    const content =
+        document.getElementById(
+            "wishlistContent"
+        );
+
+    if(wishlist.length===0){
+
+        content.innerHTML=
+            "Your wishlist is empty.<br><br>Click the ♡ icon on a car to add it.";
+
+    }else{
+
+        content.innerHTML=
+            wishlist
+            .map(car=>`❤️ ${car}`)
+            .join("<br><br>");
+
+    }
+
+    document
+        .getElementById("wishlistModal")
+        .classList.add("show");
+
+}
+
+
+/* =========================================================
+   BUY MODAL
+========================================================= */
+
+let currentCar="";
+
+function openBuy(name){
+
+    currentCar=name;
+
+    document
+        .getElementById("selectedCar")
+        .value=name;
+
+    document
+        .getElementById("buyModal")
+        .classList.add("show");
+
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+function showDetails(
+    name,
+    price,
+    description,
+    image
+){
+
+    currentCar=name;
+
+    document
+        .getElementById("detailName")
+        .textContent=name;
+
+    document
+        .getElementById("detailPrice")
+        .textContent=price;
+
+    document
+        .getElementById("detailDescription")
+        .textContent=description;
+
+    document
+        .getElementById("detailImage")
+        .src=image;
+
+    document
+        .getElementById("detailsModal")
+        .classList.add("show");
+
+}
+
+
+function buyFromDetails(){
+
+    closeModal("detailsModal");
+
+    openBuy(currentCar);
+
+}
+
+
+/* =========================================================
+   TEST DRIVE
+========================================================= */
+
+function openTestDrive(){
+
+    document
+        .getElementById("testModal")
+        .classList.add("show");
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
+
+function closeModal(id){
+
+    document
+        .getElementById(id)
+        .classList.remove("show");
+
+}
+
+
+/* =========================================================
+   CLICK OUTSIDE MODAL
+========================================================= */
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal=>{
+
+        modal.addEventListener(
+            "click",
+            function(e){
+
+                if(e.target===modal){
+                    modal.classList.remove("show");
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   BUY FORM
+========================================================= */
+
+document
+    .getElementById("buyForm")
+    .addEventListener(
+        "submit",
+        function(e){
+
+            e.preventDefault();
+
+            closeModal("buyModal");
+
+            showToast(
+                "Your enquiry for "+
+                currentCar+
+                " has been submitted!"
+            );
+
+            this.reset();
+
+        }
+    );
+
+
+/* =========================================================
+   TEST DRIVE FORM
+========================================================= */
+
+document
+    .getElementById("testForm")
+    .addEventListener(
+        "submit",
+        function(e){
+
+            e.preventDefault();
+
+            closeModal("testModal");
+
+            showToast(
+                "Test drive booked successfully!"
+            );
+
+            this.reset();
+
+        }
+    );
+
+
+/* =========================================================
+   CONTACT FORM
+========================================================= */
+
+document
+    .getElementById("contactForm")
+    .addEventListener(
+        "submit",
+        function(e){
+
+            e.preventDefault();
+
+            showToast(
+                "Your enquiry has been sent!"
+            );
+
+            this.reset();
+
+        }
+    );
+
+
+/* =========================================================
+   EMI CALCULATOR
+========================================================= */
+
+function calculateEMI(){
+
+    const price =
+        parseFloat(
+            document
+                .getElementById("loanAmount")
+                .value
+        ) || 0;
+
+    const down =
+        parseFloat(
+            document
+                .getElementById("downPayment")
+                .value
+        ) || 0;
+
+    const annualRate =
+        parseFloat(
+            document
+                .getElementById("interest")
+                .value
+        ) || 0;
+
+    const years =
+        parseInt(
+            document
+                .getElementById("tenure")
+                .value
+        ) || 1;
+
+    const principal =
+        Math.max(price-down,0);
+
+    const monthlyRate =
+        annualRate/12/100;
+
+    const months =
+        years*12;
+
+    let emi=0;
+
+    if(monthlyRate===0){
+
+        emi=principal/months;
+
+    }else{
+
+        emi =
+            principal *
+            monthlyRate *
+            Math.pow(
+                1+monthlyRate,
+                months
+            ) /
+            (
+                Math.pow(
+                    1+monthlyRate,
+                    months
+                )-1
+            );
+
+    }
+
+    document
+        .getElementById("emi")
+        .textContent=
+        "₹"+
+        Math.round(emi)
+            .toLocaleString("en-IN");
+
+    document
+        .getElementById("loanResult")
+        .textContent=
+        "₹"+
+        Math.round(principal)
+            .toLocaleString("en-IN");
+
+    document
+        .getElementById("interestResult")
+        .textContent=
+        annualRate+"%";
+
+    document
+        .getElementById("tenureResult")
+        .textContent=
+        years+" Years";
+
+    document
+        .getElementById("tenureValue")
+        .textContent=
+        years;
+
+}
+
+calculateEMI();
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent=message;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* =========================================================
+   TEST DATE
+========================================================= */
+
+document
+    .getElementById("testDate")
+    .min=
+    new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+/* =========================================================
+   KEYBOARD SEARCH
+========================================================= */
+
+document
+    .getElementById("search")
+    .addEventListener(
+        "keypress",
+        function(e){
+
+            if(e.key==="Enter"){
+                searchCars();
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   COMPARE FEATURE
+========================================================= */
+
+let compare=[];
+
+document
+    .querySelectorAll(".car-card")
+    .forEach(card=>{
+
+        const actions =
+            card.querySelector(
+                ".card-actions"
+            );
+
+        const compareBtn =
+            document.createElement("button");
+
+        compareBtn.className="details";
+
+        compareBtn.textContent="Compare";
+
+        compareBtn.onclick=()=>{
+
+            addCompare(
+                card.dataset.name
+            );
+
+        };
+
+        actions.appendChild(compareBtn);
+
+    });
+
+
+function addCompare(name){
+
+    if(
+        compare.includes(name)
+    ){
+
+        showToast(
+            name+" is already selected"
+        );
+
+        return;
+
+    }
+
+    if(compare.length>=3){
+
+        showToast(
+            "You can compare up to 3 cars"
+        );
+
+        return;
+
+    }
+
+    compare.push(name);
+
+    updateCompareBar();
+
+    showToast(
+        name+" added to comparison"
+    );
+
+}
+
+
+function updateCompareBar(){
+
+    const bar =
+        document.getElementById(
+            "compareBar"
+        );
+
+    const list =
+        document.getElementById(
+            "compareList"
+        );
+
+    if(compare.length===0){
+
+        bar.classList.remove("show");
+
+        return;
+
+    }
+
+    list.innerHTML =
+        compare
+        .map(
+            car =>
+            `<div class="compare-car">
+                ${car}
+            </div>`
+        )
+        .join("");
+
+    bar.classList.add("show");
+
+}
+
+
+function compareCars(){
+
+    if(compare.length<2){
+
+        showToast(
+            "Select at least 2 cars to compare"
+        );
+
+        return;
+
+    }
+
+    let message =
+        "CAR COMPARISON\n\n";
+
+    compare.forEach(
+        (car,index)=>{
+
+            message +=
+                (index+1)+
+                ". "+
+                car+
+                "\n";
+
+        }
+    );
+
+    message +=
+        "\nComparison feature is ready to connect with a detailed comparison page.";
+
+    alert(message);
+
+}
+
+
+/* =========================================================
+   CLOSE MOBILE MENU AFTER CLICK
+========================================================= */
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(link=>{
+
+        link.addEventListener(
+            "click",
+            ()=>{
+                document
+                    .getElementById("navLinks")
+                    .classList.remove("mobile");
+            }
+        );
+
+    });
+
+</script>
+
+</body>
+</html>
+```
